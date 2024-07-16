@@ -1,0 +1,108 @@
+export const contactFormInputs = [
+        {
+            label: "Name",
+            name: "name",
+            tag:"input",
+            type:"text",
+            placeholder:"Enter Name",
+            required: true,
+          },
+          {
+            label: "Company",
+            name: "company_name",
+            tag:"input",
+            type:"text",
+            placeholder:"Enter Company Name",
+            required: false,
+          },
+          {
+            label: "Email",
+            name: "email",
+            tag:"input",
+            type:"email",
+            placeholder:"abc@gmail.com",
+            required: true,
+          },
+          {
+            label: "Phone",
+            name: "contact_no",
+            tag:"input",
+            type:"number",
+            placeholder:"Enter Phone Number",
+            required: true,
+          },
+          {
+            label: "Communication Preference",
+            name: "comm_pref",
+            tag:"select",
+            type:"text",
+            placeholder:"Enter Name",
+            required: true,
+            options:[
+                {name:"Text", value:"text"},
+                {name:"Call", value:"call"},
+                {name:"Whatsapp", value:"whatsapp"},
+                {name:"Email", value:"email"},
+            ]
+          },
+]
+
+
+export const JobFormInputs= [
+    {
+      label: "Name",
+      name: "applicant_name",
+      type:"text",
+      tag:"input",
+      placeholder:"Enter Your Name",
+      required: true,
+    },
+    {
+      label: "Address",
+      name: "address",
+      type:"text",
+      tag:"input",
+      placeholder:"Enter Qualification",
+      required: true,
+    },
+    {
+      label: "Email",
+      name: "applicant_email",
+      type:"email",
+      tag:"input",
+      placeholder:"Enter Email",
+      required: true,
+    },
+    {
+      label: "Phone",
+      name: "phone_number",
+      type:"number",
+      tag:"input",
+      placeholder:"Enter Your Phone Number",
+      required: true,
+    },
+    {
+      label: "Resume",
+      name: "resume",
+      type:"file",
+      tag:"file",
+      placeholder:"Enter Your Name",
+      required: true,
+    },
+    {
+      label: "Cover letter",
+      name: "cover_letter",
+      type:"text",
+      tag:"textarea",
+      placeholder:"Cover Letter",
+      required: true,
+    },
+    {
+      label: "Job Title",
+      name: "job_id",
+      type:"text",
+      tag:"select",
+      placeholder:"Enter Your Name",
+      required: true,
+    },
+  ];
