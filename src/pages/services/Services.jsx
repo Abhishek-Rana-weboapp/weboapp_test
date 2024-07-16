@@ -1,14 +1,11 @@
 import React, { forwardRef, useEffect, useState } from "react";
 import { AnimatePresence, easeIn, motion } from "framer-motion";
 import { fadeInAnimation } from "../../components/headings/AnimateHeadings";
-import webdev from "../../assets/webdev.jpg";
 import { servicesData } from "../../static/servicesData";
 import Carousel from "../../components/carousel/Carousel";
 import ServicesCard from "../../components/cards/ServicesCard";
 import FadeInHeading from "../../components/headings/FadeInHeading";
-import Illustration from "../../assets/Illustration.png";
 import { useInView } from "react-intersection-observer";
-import { BiArrowToRight } from "react-icons/bi";
 import { FaArrowRightLong } from "react-icons/fa6";
 
 const fadeInAnimationVariants = {
@@ -20,32 +17,10 @@ const transition = {
   duration: 0.5,
 };
 
-const scrollInAnimationVariants = {
-  initial: { x: -100, opacity: 0 },
-  animate: (number) => {
-    return {
-      x: 0,
-      opacity: 1,
-      transition: { duration: 0.5, delay: number * 0.1 },
-    };
-  },
-};
-
 const fadeIn = {
   initial: { opacity: 0 },
   animate: { opacity: 1,transition : {duration:0.3} },
 }
-
-const scrollInFromRightAnimationVariants = {
-  initial: { x: 100, opacity: 0 },
-  animate: (number) => {
-    return {
-      x: 0,
-      opacity: 1,
-      transition: { duration: 0.5, delay: number * 0.1 },
-    };
-  },
-};
 
 const Services = forwardRef(function Services(props, ref) {
   const [currentImage, setCurrentImage] = useState(servicesData[0]?.img || "");
@@ -75,8 +50,8 @@ const Services = forwardRef(function Services(props, ref) {
           </span>
         </motion.h2>
       </div>
-      <section className="relative h-full sm:flex items-start gap-16 px-40 hidden">
-        <div className="relative mt-20 gap-16 bg-white p-2 lg:flex">
+      <section className="h-full sm:flex items-start gap-16 px-40 hidden">
+        <div className=" mt-20 gap-16 bg-white p-2 lg:flex">
           <div className="flex h-max w-1/2 flex-col justify-center">
             <div className="sticky top-0 h-[25vh] bg-gradient-to-t from-neutral-50/0 to-neutral-50/100"></div>
             {servicesData.map((service, index) => {
