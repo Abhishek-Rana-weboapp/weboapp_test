@@ -51,7 +51,7 @@ const Services = forwardRef(function Services(props, ref) {
         </motion.h2>
       </div>
       <section className="h-full sm:flex items-start gap-16 px-40 hidden">
-        <div className=" gap-16 min-h-max bg-white p-2 lg:flex">
+        <div className=" gap-16 h-[300vh] bg-white p-2 lg:flex">
           <div className="flex h-max w-1/2 flex-col justify-center">
             <div className="sticky top-0 h-[25vh] bg-gradient-to-t from-neutral-50/0 to-neutral-50/100"></div>
             {servicesData.map((service, index) => {
