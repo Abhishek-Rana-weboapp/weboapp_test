@@ -1,0 +1,189 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap'); */
+
+
+:root {
+  font-family:"Open Sans", sans-serif; 
+}
+
+html , body{
+  margin: 0;
+  padding: 0;
+  height: 100%;
+    width: 100%;
+}
+
+#root{
+  overflow-x: clip;
+  padding: 0;
+  margin: 0;
+  scrollbar-gutter: stable;
+}
+
+
+
+.tiptap{
+  padding: 5px;
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 10px;
+}
+
+.tiptap img{
+  margin-inline: auto;
+  max-height: 600px;
+}
+
+div{
+  width: 100%;
+}
+
+.tiptap h1{
+  font-size:  2.125rem;
+}
+
+.tiptap h2{
+  font-size:1.875rem;
+}
+
+.tiptap h3{
+  font-size: 1.5rem;
+}
+
+.tiptap h4{
+  font-size: 1.25rem;
+}
+
+.tiptap ul{
+  list-style: disc;
+ 
+}
+
+.tiptap li{
+  margin-left: 2rem
+}
+
+.tiptap ol{
+  list-style: decimal;
+  width: max-content;
+  margin-left: auto;
+  margin-inline: auto;
+}
+
+.tiptap ol li p {
+  text-wrap: wrap;
+}
+
+.blog-content{
+  padding: 10px;
+  text-align: start;
+}
+
+.blog-content h1{
+  font-size:  2.125rem;
+  margin-top:20px;
+  font-weight: 600;
+}
+
+.blog-content h2{
+  font-size:1.875rem;
+  margin-top:20px;
+  font-weight: 600;
+}
+
+.blog-content h3{
+  font-size: 1.5rem;
+  margin-top:20px;
+  font-weight: 600;
+}
+
+.blog-content h4{
+  font-size: 1.25rem;
+  margin-top:20px;
+  font-weight: 600;
+}
+
+.blog-content img{
+  margin-inline: auto;
+  margin-block: 20px;
+  max-height: 400px;
+  width: 90%;
+  object-fit: cover;
+  border-radius:40px;
+}
+
+.blog-content p {
+  margin:4px;
+}
+
+.blog-content ol{
+  list-style: decimal;
+  margin: 1.5rem 0.5rem;
+
+}
+
+.blog-content ul{
+  list-style: disc;
+  margin: 2rem 0.5rem;
+}
+
+.blog-content ol li p {
+  margin-top: 0;
+  padding: 0rem
+}
+
+pre{
+  background-color: #222;
+  color: #fff;
+  padding: 16px 20px;
+  border-radius: 10px;
+  margin: 1rem 0;
+}
+
+.MyGradient {
+  mask-image: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 1) 20%,
+    rgba(255, 255, 255, 1) 80%,
+    rgba(255, 255, 255, 0)
+  );
+}
+
+@media (max-width: 768px) { /* Adjust the max-width as needed */
+  .MyGradient {
+    mask-image: none; /* Disable the gradient mask */
+  }
+
+  .blog-content ul{
+    margin-left : 1.5rem;
+    margin-block: 0.5rem;
+  }
+
+  .blog-content h1{
+    font-size: 1.75rem;
+  }
+
+  .blog-content h2{
+    font-size: 1.5rem;
+  }
+}
+
+
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer utilities {
+  /* Chrome, Safari and Opera */
+  .scrollbar-hidden::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scrollbar-hidden {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+  }
+}
