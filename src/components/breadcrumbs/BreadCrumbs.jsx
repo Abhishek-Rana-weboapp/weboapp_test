@@ -1,18 +1,21 @@
 import { Link, useLocation } from 'react-router-dom'
 import { cn } from '../../utils/axios/helperfunctions'
-import { ChevronRight } from 'lucide-react'
+import { ChevronRight, Home } from 'lucide-react'
+
+
+
 const BreadCrumbs = ({containerClass}) => {
  const location = useLocation()
  const pathnames = location.pathname.split('/').filter((x) => x)
   return (
-   <nav className={cn("bg-transparent text-white px-5 py-3 rounded-md", containerClass)}>
+   <nav className={cn("bg-transparent rounded-md", containerClass)}>
      <ol className="list-none p-0 flex items-center">
        <li className="flex items-center">
          <Link 
            to="/" 
-           className="text-white hover:text-blue-800 underline"
+           className=" hover:text-blue-800 underline"
          >
-           Home
+           <Home size={18} />
          </Link>
        </li>
        {pathnames.map((name, index) => {
@@ -21,15 +24,15 @@ const BreadCrumbs = ({containerClass}) => {
          
          return (
            <li key={name} className="flex items-center">
-             <span className="mx-2 text-gray-500"><ChevronRight size={30} color='white' /></span>
+             <span className="mx-2"><ChevronRight size={15} color='black' /></span>
              {isLast ? (
-               <span className="text-white/50 font-medium capitalize">
+               <span className=" font-medium capitalize text-sm">
                  {name}
                </span>
              ) : (
                <Link
                  to={routeTo}
-                 className="text-white hover:text-blue-800 capitalize underline"
+                 className=" hover:text-blue-800 capitalize underline text-sm"
                >
                  {name}
                </Link>

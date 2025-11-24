@@ -40,15 +40,14 @@ const OurValues = () => {
     <section className="">
       <Wrapper className={"flex flex-col gap-8 px-5 md:flex-row md:px-2 md:py-20 py-8"} >
         <div className="flex max-w-[600px] flex-col gap-8 text-start">
-         <h2 className="text-[2.5rem] leading-[2.5rem] text-primary-700 font-semibold text-start max-w-lg">What We Stand For</h2>
+         <h2 className="text-[2.5rem] leading-[2.5rem] text-primary-900 font-semibold text-start max-w-lg">What We Stand For</h2>
           {/* <FadeUpHeading>What We Stand For</FadeUpHeading> */}
-          <FadeUpParagraph className="text-black/70">
+          <p className="text-black/70 ">
             At Weboapp Discovery, we believe in empowering businesses through
             innovative and reliable IT solutions. Our commitment is to deliver
             exceptional services that drive growth, efficiency, and digital
             transformation.
-          </FadeUpParagraph>
-          <FadeUp>
+          </p>
             <ul className="list-disc ml-5 md:text-lg">
               {points.map((point, index) => (
                 <li key={index} className="">
@@ -56,15 +55,9 @@ const OurValues = () => {
                 </li>
               ))}
             </ul>
-          </FadeUp>
         </div>
         <div className="flex gap-3 md:items-end">
-          <motion.div
-            variants={fadeFromRight}
-            initial="initial"
-            whileInView={"animate"}
-            viewport={{ margin: "0px 0px -200px 0px", amount: 0.6, once: true }}
-            transition={{ duration: 0.5, ease: "easeInOut", delay: 0.2 }}
+          <div
             className="w-full max-w-[600px] ml-auto"
           >
             <ImageComponent
@@ -79,7 +72,7 @@ const OurValues = () => {
               src="/landing/ourValues/3.png"
               alt=""
             /> */}
-          </motion.div>
+          </div>
         </div>
       </Wrapper>
     </section>

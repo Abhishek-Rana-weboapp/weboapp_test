@@ -173,77 +173,153 @@ export const industryServicesData = [
 ];
 
 
-export const industries = [
+// export const industries = [
+//   {
+//     heading:"Healthcare",
+//     description:"Technology for Healthcare",
+//     image:"/healthcareIndustry.jpeg",
+//     link:"/industries/healthcare"
+//   },
+//   {
+//     heading:"Agriculture",
+//     description:"Agriculture Technology to help farmers to expand their crop",
+//     image:"/agriculture.jfif",
+//     link:"/aerospace"
+//   },
+//   {
+//     heading:"Chemical Manufacturing",
+//     description:"Technology for the aerospace and defense",
+//     image:"/chemical.jpeg",
+//     link:"/aerospace"
+//   },
+//   {
+//     heading:"Communication Services",
+//     description:"Technology for the aerospace and defense",
+//     image:"/communicationservices.jpg",
+//     link:"/aerospace"
+//   },
+//   {
+//     heading:"Consumer Packaged Goods",
+//     description:"Technology for the aerospace and defense",
+//     image:"/consumerpackage.jfif",
+//     link:"/aerospace"
+//   },
+//   {
+//     heading:"Aerospace & Defense",
+//     description:"Technology for the aerospace and defense",
+//     image:"/aerospace.jfif",
+//     link:"/aerospace"
+//   },
+//   {
+//     heading:"E-commerce",
+//     description:"Technology for the aerospace and defense",
+//     image:"/aerospace.jfif",
+//     link:"/aerospace"
+//   },
+//   {
+//     heading:"Aerospace & Defense",
+//     description:"Technology for the aerospace and defense",
+//     image:"/aerospace.jfif",
+//     link:"/aerospace"
+//   },
+//   {
+//     heading:"Aerospace & Defense",
+//     description:"Technology for the aerospace and defense",
+//     image:"/aerospace.jfif",
+//     link:"/aerospace"
+//   },
+//   {
+//     heading:"Aerospace & Defense",
+//     description:"Technology for the aerospace and defense",
+//     image:"/aerospace.jfif",
+//     link:"/aerospace"
+//   },
+//   {
+//     heading:"Aerospace & Defense",
+//     description:"Technology for the aerospace and defense",
+//     image:"/aerospace.jfif",
+//     link:"/aerospace"
+//   },
+//   {
+//     heading:"Aerospace & Defense",
+//     description:"Technology for the aerospace and defense",
+//     image:"/aerospace.jfif",
+//     link:"/aerospace"
+//   },
+// ]
+
+
+export const industries =[
   {
-    heading:"Healthcare",
-    description:"Technology for Healthcare",
-    image:"/healthcareIndustry.jpeg",
-    link:"/industries/healthcare"
+    "title": "Healthcare",
+    "url": "healthcare",
+    "description": "HIPAA-ready IT solutions supporting patient portals, EMR systems, and telehealth.",
+    "services": ["Patient Apps", "EMR/Clinic Systems", "Medical CRM", "Telemedicine"]
   },
   {
-    heading:"Agriculture",
-    description:"Agriculture Technology to help farmers to expand their crop",
-    image:"/agriculture.jfif",
-    link:"/aerospace"
+    "title": "Finance & Banking",
+    "url": "finance-banking",
+    "description": "Compliance-focused digital platforms enabling automation and financial operations.",
+    "services": ["FinTech Apps", "KYC/AML Systems", "Payment Gateway", "Trading Platforms"]
   },
   {
-    heading:"Chemical Manufacturing",
-    description:"Technology for the aerospace and defense",
-    image:"/chemical.jpeg",
-    link:"/aerospace"
+    "title": "Real Estate",
+    "url": "real-estate",
+    "description": "Modern property tech solutions for agents, developers, and buyers.",
+    "services": ["Property Listing Apps", "Real Estate CRM", "Virtual Tours", "Lead Automation"]
   },
   {
-    heading:"Communication Services",
-    description:"Technology for the aerospace and defense",
-    image:"/communicationservices.jpg",
-    link:"/aerospace"
+    "title": "E-commerce",
+    "url": "ecommerce",
+    "description": "High-performance online stores with integrated backend systems.",
+    "services": ["Custom Storefronts", "Marketplace Development", "Inventory Automation", "POS Sync"]
   },
   {
-    heading:"Consumer Packaged Goods",
-    description:"Technology for the aerospace and defense",
-    image:"/consumerpackage.jfif",
-    link:"/aerospace"
+    "title": "Education",
+    "url": "education",
+    "description": "Smart learning platforms with tracking, assessments, and analytics.",
+    "services": ["LMS Development", "Course Platforms", "Live Class Integration", "Student Portals"]
   },
   {
-    heading:"Aerospace & Defense",
-    description:"Technology for the aerospace and defense",
-    image:"/aerospace.jfif",
-    link:"/aerospace"
+    "title": "Manufacturing",
+    "url": "manufacturing",
+    "description": "Industry 4.0 solutions for automation, monitoring, and predictive maintenance.",
+    "services": ["IoT Dashboards", "Inventory Systems", "Production Tracking", "Automation Software"]
   },
   {
-    heading:"Aerospace & Defense",
-    description:"Technology for the aerospace and defense",
-    image:"/aerospace.jfif",
-    link:"/aerospace"
+    "title": "Logistics & Transportation",
+    "url": "logistics-transportation",
+    "description": "Technology that optimizes fleet, supply chain, and delivery operations.",
+    "services": ["Fleet Tracking", "Route Optimization", "Logistics Apps", "Warehouse Management"]
   },
   {
-    heading:"Aerospace & Defense",
-    description:"Technology for the aerospace and defense",
-    image:"/aerospace.jfif",
-    link:"/aerospace"
+    "title": "Hospitality & Travel",
+    "url": "hospitality-travel",
+    "description": "Digital experiences for hotels, travel agencies, and booking platforms.",
+    "services": ["Booking Engines", "Hotel Management Systems", "Travel Apps", "Check-in Automation"]
   },
   {
-    heading:"Aerospace & Defense",
-    description:"Technology for the aerospace and defense",
-    image:"/aerospace.jfif",
-    link:"/aerospace"
+    "title": "Retail",
+    "url": "retail",
+    "description": "Omnichannel solutions for physical stores and digital commerce.",
+    "services": ["POS Systems", "Inventory Sync", "Digital Catalogs", "Customer Loyalty Apps"]
   },
   {
-    heading:"Aerospace & Defense",
-    description:"Technology for the aerospace and defense",
-    image:"/aerospace.jfif",
-    link:"/aerospace"
+    "title": "Automotive",
+    "url": "automotive",
+    "description": "Custom platforms for dealerships, service centers, and vehicle management.",
+    "services": ["Dealership CRM", "Vehicle Tracking", "Service Center Portals", "Parts Inventory"]
   },
   {
-    heading:"Aerospace & Defense",
-    description:"Technology for the aerospace and defense",
-    image:"/aerospace.jfif",
-    link:"/aerospace"
+    "title": "Media & Entertainment",
+    "url": "media-entertainment",
+    "description": "Streaming-ready platforms with high-quality content delivery.",
+    "services": ["OTT Platforms", "Music Streaming Apps", "Content Management", "Creator Dashboards"]
   },
   {
-    heading:"Aerospace & Defense",
-    description:"Technology for the aerospace and defense",
-    image:"/aerospace.jfif",
-    link:"/aerospace"
-  },
+    "title": "Construction",
+    "url": "construction",
+    "description": "Tools for project tracking, worker management, and blueprint collaboration.",
+    "services": ["Project Management Apps", "Equipment Tracking", "On-site Reporting", "Document Sharing"]
+  }
 ]

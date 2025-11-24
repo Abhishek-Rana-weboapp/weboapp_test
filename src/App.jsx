@@ -1,5 +1,5 @@
 import './App.css';
-import { FormContextProvider } from './context/FormContext';
+import { FormContextProvider, useFormContext } from './context/FormContext';
 import Header from './components/header/Header';
 import ScrollToTop from './components/ScrollToTop';
 import {
@@ -23,6 +23,9 @@ import {
   lazy,
   Suspense,
 } from 'react';
+import PageLoader from './components/pageLoader/PageLoader';
+import Modal from './components/modal/Modal';
+import RequestServiceForm from './components/forms/RequestServiceForm';
 
 function App() {
   const location =
@@ -45,7 +48,14 @@ function App() {
     lazy(
       () =>
         import(
-          './pages/services/Industries'
+          './pages/industries/Industries'
+        ),
+    );
+  const IndustryTemplate =
+    lazy(
+      () =>
+        import(
+          './pages/industries/IndustryTemplate'
         ),
     );
   const CreateBlog =
@@ -62,10 +72,15 @@ function App() {
           './pages/technologies/Technologies'
         ),
     );
+
+
+    const {isFormOpen, setIsFormOpen} = useFormContext();
     
   return (
-    <FormContextProvider>
       <ThemeContextProvider>
+        <Modal isOpen={isFormOpen} handleModalClose={()=>setIsFormOpen(false)} >
+          <RequestServiceForm />
+        </Modal>
         <Header />
         <main>
             <ScrollToTop />
@@ -107,6 +122,14 @@ function App() {
                 }
               />
               <Route
+                path="/industries/:industry"
+                element={
+                  <LazyRoute>
+                    <IndustryTemplate />
+                  </LazyRoute>
+                }
+              />
+              <Route
                 path="/technologies"
                 element={
                   <LazyRoute>
@@ -114,14 +137,14 @@ function App() {
                   </LazyRoute>
                 }
               />
-              <Route
+              {/* <Route
                 path="/industries/healthcare"
                 element={
                   <LazyRoute>
                     <HealthCare />
                   </LazyRoute>
                 }
-              />
+              /> */}
               <Route
                 path="/blog"
                 element={
@@ -182,7 +205,6 @@ function App() {
         </main>
         <Footer />
       </ThemeContextProvider>
-    </FormContextProvider>
   );
 }
 
@@ -195,9 +217,7 @@ const LazyRoute =
     return (
       <Suspense
         fallback={
-          <>
-            Loading...
-          </>
+          <PageLoader />
         }
       >
         {

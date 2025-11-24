@@ -15,13 +15,13 @@ const About = () => {
 
   return (
     <section className="mx-auto my-20 w-full p-4 md:w-3/4">
-      <h2 className="text-[2rem] leading-[2.5rem] text-primary-900 font-semibold text-center mb-10 max-w-lg mx-auto">About us</h2>
-      <p className="mb-10 text-xl tracking-wide text-black/60 md:text-2xl">
+      <h2 className="text-[2.5rem] leading-[2.5rem] text-primary-900 font-semibold text-center mb-5 max-w-lg mx-auto">About us</h2>
+      <p className="mb-5 text-xl tracking-wide text-black/60 md:text-2xl">
         Weboapp Discovery : A leader in next-gen digital services, specializing
         in innovative web, AI, and IT solutions.
       </p>
       <div
-        className="mb-20 flex gap-3"
+        className="mb-10 flex items-center justify-center gap-3"
       >
         <DetailCard
           data={{
@@ -43,12 +43,9 @@ const About = () => {
           }}
         />
       </div>
-        <motion.div variants={fadeUp}
-        initial="initial"
-        whileInView={"animate"}
-        viewport={{ margin: "0px 0px -200px 0px", once: true }}>
-          <Pin onClick={()=>navigate("/about")} className={"mx-auto"}>Know More</Pin>
-        </motion.div>
+        <div >
+          <Pin variant="primary" onClick={()=>navigate("/about")} className={"mx-auto"}>Know More</Pin>
+        </div>
     </section>
   );
 };
@@ -57,7 +54,7 @@ export default About;
 
 export const DetailCard = ({ data, counterClass, containerClass, cardClass,iconClass }) => {
   return (
-    <div className={cn("mt-10 flex-1", cardClass)}>
+    <div className={cn("mt-10 flex-1 max-w-[300px]", cardClass)}>
       <div className={cn("flex items-center justify-center", containerClass)}>
         <AnimatedCounter
           from={0}

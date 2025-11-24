@@ -65,7 +65,7 @@ const Marquee = ({
         transition: { duration, repeat: Infinity, ease: "linear" },
       });
     }
-  }, [controls1, controls2, duration, reverse]);
+  }, [controls1, controls2, duration, reverse, width]);
 
   const handlePause = () => {
     controls1.stop();

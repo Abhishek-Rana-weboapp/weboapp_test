@@ -19,39 +19,27 @@ const WhyUs = () => {
       <div className="absolute inset-0 backdrop-blur-sm" />
       <Wrapper className="relative z-10 mx-auto flex h-full flex-col justify-between space-y-20">
         <div className="flex justify-between">
-          <motion.div
+          <div
             className="w-max"
-            variants={fadeFromRight}
-            initial="initial"
-            whileInView={"animate"}
-            viewport={{ margin: "0px 0px -200px 0px", once: true }}
           >
             <Pin arrow={false} className={"text-sm sm:text-xl hover:cursor-default"}>
               Latest Project
             </Pin>
-          </motion.div>
-          <motion.div
+          </div>
+          <div
             className="w-max"
-            variants={fadeFromRight}
-            initial="initial"
-            whileInView={"animate"}
-            viewport={{ margin: "0px 0px -200px 0px", once: true }}
           >
             <Pin arrow={false} className={"text-sm sm:text-xl hover:cursor-default"}>
               24/7 Support
             </Pin>
-          </motion.div>
+          </div>
         </div>
         <div>
           <div className="flex min-h-[400px] justify-between gap-5 max-xl:flex-wrap md:gap-2">
-            <motion.div
-              variants={fadeUp}
-              initial="initial"
-              whileInView={"animate"}
-              viewport={{ margin: "0px 0px -200px 0px", once: true }}
+            <div
             >
               <Section />
-            </motion.div>
+            </div>
             <div className="flex gap-4 max-md:flex-wrap">
               <div className="flex items-center justify-center xl:mt-16">
                 <div
@@ -88,7 +76,7 @@ const Section = () => {
       <p className="text-start text-4xl md:text-6xl">
         We're your top choice for Web Development Services.
       </p>
-      <Pin onClick={()=>setServiceFormOpen(true)} className={"border border-black px-7 text-2xl font-light"}>
+      <Pin variant="primary" onClick={()=>setServiceFormOpen(true)} className={" px-7 text-xl font-light"}>
         Get Started
       </Pin>
     </div>

@@ -1,3 +1,16 @@
+// import React from 'react'
+
+// const Testimonials = () => {
+//   return (
+//     <div>
+      
+//     </div>
+//   )
+// }
+
+// export default Testimonials
+
+
 import { motion, AnimatePresence, useInView } from "framer-motion";
 // import Image from "next/image";
 // import useFetchTestimonials from "../../../hooks/useFetchTestimonials";
@@ -56,10 +69,10 @@ export const Testimonials = ({
   return (
     <section
       ref={ref}
-      className="font-sans py-20 my-10 mx-auto max-w-md px-4 pb-20 antialiased md:max-w-6xl md:px-8 lg:px-12"
+      className="font-sans sm:py-10 pt-4 my-4 mb-20 mx-auto max-w-md px-4 pb-20 antialiased md:max-w-6xl md:px-8 lg:px-12"
     >
       <h2 className={"text-[2rem] leading-[2.5rem] text-primary-900 font-semibold text-center mx-auto mb-14 max-w-lg"}>
-        What our clients say About Us
+        Our Success Stories
       </h2>
       <div
         className="relative grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-20"

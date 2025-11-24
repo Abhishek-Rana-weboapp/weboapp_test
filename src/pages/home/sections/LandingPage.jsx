@@ -10,6 +10,7 @@ import ImageComponent from "../../../components/image/ImageComponent";
 import { useFormContext } from "../../../context/FormContext";
 import { Phone } from "lucide-react";
 import TextFadingUp from "../../../components/animateComponents/TextFadingUp";
+import FloatingIcons from "../../../components/ui/FloatingIcons";
 
 const LandingPage = () => {
   const {serviceFormOpen, setServiceFormOpen} = useFormContext()
@@ -36,6 +37,7 @@ const LandingPage = () => {
   const texts = ["Web Development", "AI Automation", "Cloud Solutions"];
   return (
     <>
+    <FloatingIcons />
       <Modal
         isOpen={serviceFormOpen}
         handleModalClose={() => setServiceFormOpen(false)}
@@ -81,7 +83,7 @@ const LandingPage = () => {
                   className="flex gap-4"
                 >
                  <Button onClick={() => setServiceFormOpen(true)} className={"flex gap-2 items-center max-md:mx-auto justify-center md:px-5 md:py-3 px-3 py-2 font-semibold"}>
-                  Schedule a Call <Phone />
+                 <Phone /> Schedule a Call 
                  </Button>
                 </div>
               </div>

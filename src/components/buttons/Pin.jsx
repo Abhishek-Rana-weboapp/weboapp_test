@@ -4,25 +4,30 @@ import { cn } from "../../utils/axios/helperfunctions";
 import { NavLink } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 
-export const Pin = ({ children, href, className, arrow = true ,linkClass, margin,...props}) => {
+export const Pin = ({ children, href, className, arrow = true ,linkClass, margin,variant = "default",...props}) => {
     const [isHovered, setIsHovered] = useState(false);
+    const variants = {
+      default : "bg-white",
+      primary: "bg-primary-700 text-white",
+      secondary: "bg-secondary-700 text-white"
+    }
     return (
       <button
       {...props}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         className={cn(
-          `flex w-max items-center  justify-between gap-3 rounded-full bg-white shadow ${arrow ? "pl-7 pr-2" : "px-5"} py-2 font-semibold`,
+          `flex w-max items-center  justify-between gap-3 rounded-full  shadow ${arrow ? "pl-7 pr-2" : "px-5"} py-2 font-semibold`,variants[variant],
           className,
         )}
       >
         <span className={cn(linkClass)}>{children}</span>
-        {arrow && <AnimatedArrow isHovered={isHovered} />}
+        {arrow && <AnimatedArrow variant={variant} isHovered={isHovered} />}
       </button>
     );
   };
   
-  export const AnimatedArrow = ({ isHovered }) => {
+  export const AnimatedArrow = ({ isHovered, variant }) => {
     const firstVariant = {
       initial: {
         x: -30,
@@ -44,11 +49,17 @@ export const Pin = ({ children, href, className, arrow = true ,linkClass, margin
         y: -30,
       },
     };
+
+    const variants = {
+      default : "border-black",
+      primary: "border-white",
+      secondary: "border-white"
+    }
     return (
       <motion.div
         initial="initial"
         animate={isHovered ? "animate" : ""}
-        className="relative h-9 w-9 overflow-hidden rounded-full border border-black"
+        className={cn("relative h-9 w-9 overflow-hidden rounded-full border border-black ", variants[variant])}
       >
         <motion.div
           variants={firstVariant}

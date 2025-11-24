@@ -7,6 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { countries } from "../../static/data";
 import FadeUpParagraph from "../animateComponents/FadeUpParagraph";
 import { FadeUp } from "../animateComponents/FadeUp";
+import { useFormContext } from "../../context/FormContext";
 
 const zodSchema = z.object({
   firstname: z.string().min(3, { message: "Required" }),
@@ -34,9 +35,12 @@ const RequestServiceForm = () => {
     },
   });
 
+  const {setIsFormOpen} = useFormContext();
+
 
   const onSubmit = (data) => {
     console.log(data);
+    setIsFormOpen(false);
   };
 
   return (
