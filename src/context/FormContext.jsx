@@ -6,9 +6,8 @@ const formContext = createContext();
 export const FormContextProvider = ({ children }) => {
   const [defaultJobForm, setDefaultJobForm] = useState(jobFormDefaultState);
   const [blogData, setBlogData] = useState("");
-  const [serviceFormOpen, setServiceFormOpen] = useState(false);
-  const [isFormOpen, setIsFormOpen] = useState(false);
   
+
   return (
     <formContext.Provider
       value={{
@@ -16,10 +15,6 @@ export const FormContextProvider = ({ children }) => {
         setDefaultJobForm,
         blogData,
         setBlogData,
-        serviceFormOpen,
-        setServiceFormOpen,
-        isFormOpen,
-        setIsFormOpen,
       }}
     >
       {children}

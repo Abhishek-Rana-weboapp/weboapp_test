@@ -4,7 +4,7 @@ import OurMission from "./sections/OurMission";
 import DevelopmentProcess from "./sections/DevelopmentProcess";
 import WhatSetsUsApart from "./sections/WhatSetsUsApart";
 import Testimonials from "../home/sections/Testimonials";
-import RequestServiceForm from "../../components/forms/RequestServiceForm"
+import ScheduleCallSection from "../../components/buttons/ScheduleCallSection"
 import OurValue from "./sections/OurValue";
 
 const AboutUs = () => {
@@ -16,7 +16,10 @@ const AboutUs = () => {
     <DevelopmentProcess />
     <WhatSetsUsApart />
     <Testimonials />
-    <RequestServiceForm />
+    <ScheduleCallSection 
+      title="Ready to Work Together?"
+      subtitle="Let's discuss your project and see how our expertise can help bring your vision to life."
+    />
     </div>
   );
 };

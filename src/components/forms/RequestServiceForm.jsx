@@ -1,13 +1,12 @@
 import Button from "../buttons/Button";
 import Wrapper from "../Wrapper";
 import { useForm } from "react-hook-form";
-import FadeUpHeading from "../animateComponents/FadeUpHeading";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { countries } from "../../static/data";
-import FadeUpParagraph from "../animateComponents/FadeUpParagraph";
-import { FadeUp } from "../animateComponents/FadeUp";
-import { useFormContext } from "../../context/FormContext";
+import { motion, AnimatePresence } from "framer-motion";
+import { User, Mail, Phone, Building, Globe, Send, CheckCircle, AlertCircle, X } from "lucide-react";
+import { useState, useEffect } from "react";
 
 const zodSchema = z.object({
   firstname: z.string().min(3, { message: "Required" }),
@@ -19,10 +18,14 @@ const zodSchema = z.object({
 });
 
 const RequestServiceForm = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm({
     resolver: zodResolver(zodSchema),
     defaultValues: {
@@ -30,213 +33,351 @@ const RequestServiceForm = () => {
       lastname: "",
       email: "",
       phone: "",
-      country: "Afghanistan",
+      country: "United States",
       company: "",
     },
   });
 
-  const {setIsFormOpen} = useFormContext();
+  const onSubmit = async (data) => {
+    setIsSubmitting(true);
+    
+    // Simulate API call
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    
+    console.log("Form submitted:", data);
+    setIsSubmitting(false);
+    setIsSubmitted(true);
+    reset();
+    
+    // Reset success message after 4 seconds
+    setTimeout(() => setIsSubmitted(false), 8000);
+  };
 
+  // Close modal when clicking outside or pressing Escape
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape" && isSubmitted) {
+        setIsSubmitted(false);
+      }
+    };
 
-  const onSubmit = (data) => {
-    console.log(data);
-    setIsFormOpen(false);
+    if (isSubmitted) {
+      document.addEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "unset";
+    };
+  }, [isSubmitted]);
+
+  const containerVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 }
   };
 
   return (
-    <Wrapper className={"space-y-20 rounded-2xl bg-white p-10 py-20"}>
-      <div className="flex flex-col gap-5 md:flex-row">
-        <div className="hidden basis-1/2 content-center md:block">
-          <FadeUpParagraph className="max-w-[500px] text-start text-black/70 md:text-2xl">
-            Find out more about how we can help your organization navigate its
-            next. Let us know your areas of interest so that we can serve you
-            better.
-          </FadeUpParagraph>
-        </div>
-        <div className="basis-1/2 space-y-10">
-          <FadeUpHeading className={"text-center"}>
-            Request For Services
-          </FadeUpHeading>
-          <FadeUp>
-            <form
-              className="flex flex-wrap gap-3 sm:gap-8"
-              onSubmit={handleSubmit(onSubmit)}
+    <>
+      {/* Success Modal - Moved outside main container */}
+      <AnimatePresence>
+        {isSubmitted && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
+            onClick={() => setIsSubmitted(false)}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.7, y: 50 }}
+              animate={{ 
+                opacity: 1, 
+                scale: 1, 
+                y: 0,
+                transition: {
+                  type: "spring",
+                  damping: 25,
+                  stiffness: 300,
+                  duration: 0.5
+                }
+              }}
+              exit={{ 
+                opacity: 0, 
+                scale: 0.8, 
+                y: 20,
+                transition: { duration: 0.2 }
+              }}
+              className="relative bg-white rounded-3xl p-8 max-w-md w-full mx-4 shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
             >
-              <div className="flex flex-col gap-3 sm:flex-row">
-                <label className="flex flex-1 flex-col items-start md:gap-1">
-                  <span className="text-black/70  ">
-                    First Name<span className="text-red-400">*</span>
-                  </span>
-                  <input
-                    className="w-full rounded-xl border p-2"
-                    placeholder="Jane"
-                    {...register("firstname")}
-                    type="text"
-                  />
-                </label>
-                <label className="flex flex-1 flex-col items-start md:gap-1">
-                  <span className="text-black/70  ">Last Name </span>
-                  <input
-                    className="w-full rounded-xl border p-2"
-                    placeholder="Smith"
-                    {...register("lastname")}
-                    type="text"
-                  />
-                </label>
+              {/* Close Button */}
+              <button
+                onClick={() => setIsSubmitted(false)}
+                className="absolute top-4 right-4 p-2 rounded-full hover:bg-gray-100 transition-colors duration-200"
+              >
+                <X className="w-5 h-5 text-gray-500" />
+              </button>
+
+              {/* Success Content */}
+              <div className="text-center">
+                {/* Animated Check Icon */}
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ 
+                    scale: 1,
+                    transition: {
+                      type: "spring",
+                      damping: 15,
+                      stiffness: 300,
+                      delay: 0.2
+                    }
+                  }}
+                  className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6"
+                >
+                  <CheckCircle className="w-10 h-10 text-green-600" />
+                </motion.div>
+
+                {/* Success Text */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ 
+                    opacity: 1, 
+                    y: 0,
+                    transition: { delay: 0.3, duration: 0.4 }
+                  }}
+                >
+                  <h3 className="text-2xl font-bold text-gray-800 mb-3">
+                    Message Sent Successfully! 🎉
+                  </h3>
+                  <p className="text-gray-600 mb-6 leading-relaxed">
+                    Thank you for reaching out! We've received your message and our team will get back to you within 24 hours.
+                  </p>
+                </motion.div>
+
+                {/* Action Button */}
+                <motion.button
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ 
+                    opacity: 1, 
+                    y: 0,
+                    transition: { delay: 0.4, duration: 0.4 }
+                  }}
+                  onClick={() => setIsSubmitted(false)}
+                  className="w-full bg-gradient-to-r from-primary-700 to-blue-600 text-white font-semibold py-3 px-6 rounded-xl hover:from-primary-800 hover:to-blue-700 transition-all duration-300 transform hover:scale-105"
+                >
+                  Continue Browsing
+                </motion.button>
               </div>
-              <div className="flex flex-col gap-3 sm:flex-row">
-                <label className="flex flex-1 flex-col items-start md:gap-1">
-                  <span className="text-black/70  ">
-                    Email<span className="text-red-400">*</span>
-                  </span>
-                  <input
-                    className="w-full rounded-xl border p-2"
-                    placeholder="abc@gmail.com"
-                    {...register("email")}
-                    type="email"
-                  />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Main Form Container */}
+      <motion.div 
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+        className="max-w-4xl mx-auto"
+      >
+      <div className="bg-white rounded-3xl shadow-2xl overflow-hidden">
+        {/* Header Section */}
+        {/* <div className="bg-gradient-to-r from-primary-700 to-blue-600 px-8 py-12 text-white">
+          <motion.div variants={itemVariants} className="text-center">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              Let's Build Something Amazing
+            </h2>
+            <p className="text-xl text-blue-100 max-w-2xl mx-auto">
+              Ready to transform your business? Share your project details and let's discuss how we can bring your vision to life.
+            </p>
+          </motion.div>
+        </div> */}
+
+        {/* Form Section */}
+        <div className="p-8 md:p-12">
+
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
+            {/* Name Fields */}
+            <motion.div variants={itemVariants} className="grid md:grid-cols-2 gap-6">
+              <div className="space-y-2">
+                <label className="flex items-center gap-2 text-sm font-semibold text-gray-700">
+                  <User size={16} />
+                  First Name <span className="text-red-500">*</span>
                 </label>
-                <label className="flex flex-1 flex-col items-start md:gap-1">
-                  <span className="text-black/70  ">
-                    Country<span className="text-red-400">*</span>
-                  </span>
-                  <select
-                    className="w-full flex-1 rounded-xl border p-2 "
-                    {...register("country")}
+                <input
+                  {...register("firstname")}
+                  type="text"
+                  placeholder="Enter your first name"
+                  className={`w-full px-4 py-4 rounded-xl border-2 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent ${
+                    errors.firstname ? 'border-red-300 bg-red-50' : 'border-gray-200 hover:border-gray-300'
+                  }`}
+                />
+                {errors.firstname && (
+                  <motion.div 
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="flex items-center gap-1 text-red-500 text-sm"
                   >
-                    {countries.map((country, index) => {
-                      return (
-                        <option value={country} key={index}>
-                          {country}
-                        </option>
-                      );
-                    })}
-                  </select>
-                </label>
+                    <AlertCircle size={14} />
+                    {errors.firstname.message}
+                  </motion.div>
+                )}
               </div>
-              <div className="flex flex-col gap-3 sm:flex-row">
-                <label className="flex flex-1 flex-col items-start md:gap-1">
-                  <span className="text-black/70  ">
-                    Phone Number <span className="text-red-400">*</span>
-                  </span>
-                  <input
-                    className="w-full rounded-xl border p-2"
-                    placeholder="+1 748648302"
-                    {...register("phone")}
-                    type="number"
-                  />
+
+              <div className="space-y-2">
+                <label className="flex items-center gap-2 text-sm font-semibold text-gray-700">
+                  <User size={16} />
+                  Last Name
                 </label>
-                <label className="flex flex-1 flex-col items-start md:gap-1">
-                  <span className="text-black/70  ">Company Name</span>
-                  <input
-                    className="w-full rounded-xl border p-2"
-                    placeholder="Tech Startup"
-                    {...register("company")}
-                    type="text"
-                  />
-                </label>
+                <input
+                  {...register("lastname")}
+                  type="text"
+                  placeholder="Enter your last name"
+                  className="w-full px-4 py-4 rounded-xl border-2 border-gray-200 hover:border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-300"
+                />
               </div>
-              <Button className={"mx-auto rounded-xl"} type="submit">
-                Submit
-              </Button>
-            </form>
-          </FadeUp>
+            </motion.div>
+
+            {/* Email and Country */}
+            <motion.div variants={itemVariants} className="grid md:grid-cols-2 gap-6">
+              <div className="space-y-2">
+                <label className="flex items-center gap-2 text-sm font-semibold text-gray-700">
+                  <Mail size={16} />
+                  Email Address <span className="text-red-500">*</span>
+                </label>
+                <input
+                  {...register("email")}
+                  type="email"
+                  placeholder="your.email@company.com"
+                  className={`w-full px-4 py-4 rounded-xl border-2 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent ${
+                    errors.email ? 'border-red-300 bg-red-50' : 'border-gray-200 hover:border-gray-300'
+                  }`}
+                />
+                {errors.email && (
+                  <motion.div 
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="flex items-center gap-1 text-red-500 text-sm"
+                  >
+                    <AlertCircle size={14} />
+                    {errors.email.message}
+                  </motion.div>
+                )}
+              </div>
+
+              <div className="space-y-2">
+                <label className="flex items-center gap-2 text-sm font-semibold text-gray-700">
+                  <Globe size={16} />
+                  Country <span className="text-red-500">*</span>
+                </label>
+                <select
+                  {...register("country")}
+                  className="w-full px-4 py-4 rounded-xl border-2 border-gray-200 hover:border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-300 bg-white"
+                >
+                  {countries.map((country, index) => (
+                    <option value={country} key={index}>
+                      {country}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </motion.div>
+
+            {/* Phone and Company */}
+            <motion.div variants={itemVariants} className="grid md:grid-cols-2 gap-6">
+              <div className="space-y-2">
+                <label className="flex items-center gap-2 text-sm font-semibold text-gray-700">
+                  <Phone size={16} />
+                  Phone Number <span className="text-red-500">*</span>
+                </label>
+                <input
+                  {...register("phone")}
+                  type="tel"
+                  placeholder="+1 (555) 123-4567"
+                  className={`w-full px-4 py-4 rounded-xl border-2 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent ${
+                    errors.phone ? 'border-red-300 bg-red-50' : 'border-gray-200 hover:border-gray-300'
+                  }`}
+                />
+                {errors.phone && (
+                  <motion.div 
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="flex items-center gap-1 text-red-500 text-sm"
+                  >
+                    <AlertCircle size={14} />
+                    {errors.phone.message}
+                  </motion.div>
+                )}
+              </div>
+
+              <div className="space-y-2">
+                <label className="flex items-center gap-2 text-sm font-semibold text-gray-700">
+                  <Building size={16} />
+                  Company Name
+                </label>
+                <input
+                  {...register("company")}
+                  type="text"
+                  placeholder="Your Company Ltd."
+                  className="w-full px-4 py-4 rounded-xl border-2 border-gray-200 hover:border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-300"
+                />
+              </div>
+            </motion.div>
+
+            {/* Submit Button */}
+            <motion.div variants={itemVariants} className="pt-6">
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className={`w-full md:w-auto mx-auto flex items-center justify-center gap-3 px-12 py-4 rounded-xl font-semibold text-lg transition-all duration-300 ${
+                  isSubmitting 
+                    ? 'bg-gray-400 cursor-not-allowed' 
+                    : 'bg-gradient-to-r from-primary-700 to-blue-600 hover:from-primary-800 hover:to-blue-700 transform hover:scale-105 hover:shadow-lg'
+                } text-white`}
+              >
+                {isSubmitting ? (
+                  <>
+                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                    Sending...
+                  </>
+                ) : (
+                  <>
+                    <Send size={20} />
+                    Send Message
+                  </>
+                )}
+              </button>
+            </motion.div>
+          </form>
+
+          {/* Footer Note */}
+          <motion.div variants={itemVariants} className="mt-8 text-center">
+            <p className="text-gray-500 text-sm">
+              We respect your privacy. Your information will only be used to contact you about your inquiry.
+            </p>
+          </motion.div>
         </div>
       </div>
-    </Wrapper>
+    </motion.div>
+    </>
   );
 };
 
 export default RequestServiceForm;
 
-//<motion.div
-//   variants={fadeUp}
-//   initial="initial"
-//   whileInView={"animate"}
-//   viewport={{ margin: "0px 0px -200px 0px", once: true }}
-//   className="mx-auto max-w-[1500px] space-y-5 pb-10"
-// >
-//   <h1 className="pl-6 text-start text-3xl font-bold md:text-5xl">
-//     Request for Services
-//   </h1>
-
-//   <form
-//     className="flex flex-col-reverse gap-10 p-4 md:flex-row md:gap-20"
-//     onSubmit={handleSubmit}
-//   >
-//     <div className="flex-1">
-//       <div className="max-w-[700px] space-y-20 text-start">
-//         <p className="text-xl md:text-3xl">
-//           Find out more about how we can help your organization navigate its
-//           next. Let us know your areas of interest so that we can serve you
-//           better.
-//         </p>
-//       </div>
-//     </div>
-//     <div className="flex flex-1 flex-wrap justify-between gap-3">
-//       <input
-//         onChange={handleChange}
-//         name="firstname"
-//         value={formData.firstname}
-//         className="mx-2 h-20 w-1/3 border border-x-0 border-b-4 border-t-0 p-2 outline-none placeholder:text-2xl"
-//         placeholder="First Name"
-//         type="text"
-//       />
-//       <input
-//         onChange={handleChange}
-//         name="lastname"
-//         value={formData.lastname}
-//         className="mx-2 h-20 w-1/3 border border-x-0 border-b-4 border-t-0 p-2 outline-none placeholder:text-2xl"
-//         placeholder="Last Name"
-//         type="text"
-//       />
-//       <input
-//         onChange={handleChange}
-//         name="email"
-//         value={formData.email}
-//         className="mx-2 h-20 w-1/3 border border-x-0 border-b-4 border-t-0 p-2 outline-none placeholder:text-2xl"
-//         placeholder="Email"
-//         type="text"
-//       />
-//       <input
-//         onChange={handleChange}
-//         name="job_title"
-//         value={formData.job_title}
-//         className="mx-2 h-20 w-1/3 border border-x-0 border-b-4 border-t-0 p-2 outline-none placeholder:text-2xl"
-//         placeholder="Job Title"
-//         type="text"
-//       />
-//       <input
-//         onChange={handleChange}
-//         name="company"
-//         value={formData.company}
-//         className="mx-2 h-20 w-1/3 border border-x-0 border-b-4 border-t-0 p-2 outline-none placeholder:text-2xl"
-//         placeholder="Company"
-//         type="text"
-//       />
-//       <input
-//         onChange={handleChange}
-//         name="phone"
-//         value={formData.phone}
-//         className="mx-2 h-20 w-1/3 border border-x-0 border-b-4 border-t-0 p-2 outline-none placeholder:text-2xl"
-//         placeholder="Phone no"
-//         type="text"
-//       />
-//       <textarea
-//         onChange={handleChange}
-//         name="message"
-//         value={formData.message}
-//         className="h-28 w-full border border-x-0 border-b-4 border-t-0 px-2 py-2 outline-none placeholder:text-2xl"
-//         placeholder="Message"
-//         type="text"
-//       />
-//       <Button
-//         size={isDesktop ? "large" : "medium"}
-//         variant="gray"
-//         className={"px-20"}
-//       >
-//         Submit
-//       </Button>
-//     </div>
-//   </form>
-// </motion.div>

@@ -4,6 +4,7 @@ import ImageComponent from '../../../components/image/ImageComponent';
 import Button from '../../../components/buttons/Button';
 import { ArrowRight, ChevronLeft } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
   const industries = [
     {
@@ -147,9 +148,11 @@ const Industry = () => {
                 })}
                </ul>
 
-               <Button className={"flex gap-2 items-center mt-8 max-md:mx-auto justify-center md:px-5 md:py-3 px-3 py-2 font-semibold"} >
-                Schedule a Call
-               </Button>
+               <Link to="/contact">
+                 <Button className={"flex gap-2 items-center mt-8 max-md:mx-auto justify-center md:px-5 md:py-3 px-3 py-2 font-semibold"}>
+                   Schedule a Call
+                 </Button>
+               </Link>
             </div>
            </div>
 

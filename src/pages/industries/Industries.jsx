@@ -6,12 +6,10 @@ import { industries } from '../../static/servicesData';
 import { Link } from 'react-router-dom';
 import Button from '../../components/buttons/Button';
 import { Phone } from 'lucide-react';
-import { useFormContext } from '../../context/FormContext';
 
 const Industries =
   () => {
 
-  const {setIsFormOpen} = useFormContext()
     return (
       <>
       <section className="p-2 text-black">
@@ -37,11 +35,11 @@ const Industries =
               We've completed projects for a wide range of industries, from healthcare to construction to finance.
             </p>
 
-            <Button className={"flex "} onClick={() => {
-                    setIsFormOpen(true)
-            }}>
-              Schedule a Call
-            </Button>
+            <Link to="/contact">
+              <Button className={"flex "}>
+                Schedule a Call
+              </Button>
+            </Link>
           </div>
           <div>
             <ImageComponent
@@ -114,7 +112,6 @@ export default Industries;
 // import { industries } from "../../static/servicesData";
 // import { motion, useInView } from "framer-motion";
 // import { animVariants } from "../../utils/axios/animations/animations";
-// import RequestServiceForm from "../../components/forms/RequestServiceForm";
 // import { useEffect, useRef, useState } from "react";
 // import { useNavigate } from "react-router-dom";
 // import FadeUpHeading from "../../components/animateComponents/FadeUpHeading";
@@ -163,7 +160,6 @@ export default Industries;
 //     {/* requesty for services */}
 
 //     <div className="max-w-[1400px] mx-auto my-20">
-//       <RequestServiceForm />
 //     </div>
 
 //     </motion.div>

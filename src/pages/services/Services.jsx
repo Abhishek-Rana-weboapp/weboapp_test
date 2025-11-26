@@ -23,6 +23,7 @@ import {
   Wifi,
   HardDrive
 } from "lucide-react";
+import ScheduleCallSection from "../../components/buttons/ScheduleCallSection";
 
 const services = [
   {
@@ -602,9 +603,9 @@ export default function Services() {
           />
         </div>
         
-        <div className="relative mx-auto max-w-4xl rounded-3xl bg-gradient-to-r from-[#0098f4] to-[#1b3f8f] p-8 text-center text-white sm:p-12 overflow-hidden">
+        {/* <div className="relative mx-auto max-w-4xl rounded-3xl bg-gradient-to-r from-[#0098f4] to-[#1b3f8f] p-8 text-center text-white sm:p-12 overflow-hidden"> */}
           {/* Animated background pattern */}
-          <div className="absolute inset-0 opacity-10">
+          {/* <div className="absolute inset-0 opacity-10">
             <motion.div
               animate={{ rotate: 360 }}
               transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
@@ -622,6 +623,7 @@ export default function Services() {
               Get a free consultation and project estimate today.
             </p>
             <motion.button
+            onClick={()=>navigate("/contact")}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="rounded-full bg-white px-6 py-3 text-base font-semibold text-[#1b3f8f] shadow-lg transition-all duration-300 hover:shadow-xl sm:px-8 sm:py-4 sm:text-lg"
@@ -629,8 +631,9 @@ export default function Services() {
               Get Started Today
             </motion.button>
           </div>
-        </div>
+        </div> */}
       </motion.section>
+          <ScheduleCallSection />
     </div>
   );
 }

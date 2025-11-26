@@ -2,7 +2,7 @@ import React, { forwardRef } from "react";
 import Hero from "./sections/Hero";
 import ProjectsSection from "./sections/ProjectsSection";
 import ProfessionalTrust from "./sections/ProfessionalTrust";
-import RequestServiceForm from "../../components/forms/RequestServiceForm";
+import ScheduleCallSection from "../../components/buttons/ScheduleCallSection";
 
 const Portfolio = forwardRef((props, ref) => {
   return (
@@ -10,7 +10,10 @@ const Portfolio = forwardRef((props, ref) => {
       <Hero/>
       <ProjectsSection/>
       <ProfessionalTrust/>
-      <RequestServiceForm/>
+      <ScheduleCallSection 
+        title="Impressed by Our Work?"
+        subtitle="Let's create something amazing together. Schedule a consultation to discuss your next project."
+      />
     </div>
   );
 });

@@ -1,5 +1,4 @@
 import './App.css';
-import { FormContextProvider, useFormContext } from './context/FormContext';
 import Header from './components/header/Header';
 import ScrollToTop from './components/ScrollToTop';
 import {
@@ -24,8 +23,7 @@ import {
   Suspense,
 } from 'react';
 import PageLoader from './components/pageLoader/PageLoader';
-import Modal from './components/modal/Modal';
-import RequestServiceForm from './components/forms/RequestServiceForm';
+import Contact from './pages/contact/Contact';
 
 function App() {
   const location =
@@ -74,13 +72,9 @@ function App() {
     );
 
 
-    const {isFormOpen, setIsFormOpen} = useFormContext();
     
   return (
       <ThemeContextProvider>
-        <Modal isOpen={isFormOpen} handleModalClose={()=>setIsFormOpen(false)} >
-          <RequestServiceForm />
-        </Modal>
         <Header />
         <main>
             <ScrollToTop />
@@ -157,6 +151,12 @@ function App() {
                 path="/about"
                 element={
                   <AboutUs />
+                }
+              />
+              <Route
+                path="/contact"
+                element={
+                  <Contact />
                 }
               />
               <Route

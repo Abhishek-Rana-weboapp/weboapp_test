@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Wrapper from '../../components/Wrapper';
 import BreadCrumbs from '../../components/breadcrumbs/BreadCrumbs';
@@ -7,13 +7,11 @@ import ImageComponent from '../../components/image/ImageComponent';
 import Button from '../../components/buttons/Button';
 import { Phone, Check, ArrowRight } from 'lucide-react';
 import { industryData } from '../../static/industryData';
-import { useFormContext } from '../../context/FormContext';
-import RequestServiceForm from '../../components/forms/RequestServiceForm';
+import ScheduleCallSection from '../../components/buttons/ScheduleCallSection';
 
 const IndustryTemplate = () => {
   const { industry } = useParams();
   const navigate = useNavigate();
-  const { setIsFormOpen } = useFormContext();
   
   // Normalize the industry parameter to match our data keys
   const normalizedIndustry = industry?.toLowerCase().replace(/\s+/g, '-');
@@ -54,12 +52,11 @@ const IndustryTemplate = () => {
                 {data.hero.description}
               </p>
               <div className="flex gap-4 flex-wrap">
-                <Button
-                  onClick={() => setIsFormOpen(true)}
-                  className="flex items-center gap-2 px-6 py-3 font-semibold"
-                >
-                  <Phone size={18} /> Schedule a Call
-                </Button>
+                <Link to="/contact">
+                  <Button className="flex items-center gap-2 px-6 py-3 font-semibold">
+                    <Phone size={18} /> Schedule a Call
+                  </Button>
+                </Link>
                 <Button
                   variant="outline"
                   onClick={() => navigate('/industries')}
@@ -234,25 +231,21 @@ const IndustryTemplate = () => {
               <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
                 Let's discuss how our {data.title.toLowerCase()} solutions can help you achieve your business goals and drive growth.
               </p>
-              <Button
-                onClick={() => setIsFormOpen(true)}
-                className="flex items-center gap-2 px-8 py-4 text-lg font-semibold mx-auto"
-              >
-                <Phone size={20} /> Schedule a Consultation
-              </Button>
+              <Link to="/contact">
+                <Button className="flex items-center gap-2 px-8 py-4 text-lg font-semibold mx-auto">
+                  <Phone size={20} /> Schedule a Consultation
+                </Button>
+              </Link>
             </motion.div>
           </div>
         </Wrapper>
       </section>
 
       {/* Request Service Form */}
-      <section className="py-16 bg-white">
-        <Wrapper>
-          <div className="max-w-4xl mx-auto">
-            <RequestServiceForm />
-          </div>
-        </Wrapper>
-      </section>
+      <ScheduleCallSection 
+        title={`Ready to Transform Your ${data?.title} Business?`}
+        subtitle={`Let's discuss how our ${data?.title.toLowerCase()} solutions can help you achieve your business goals and drive growth.`}
+      />
     </div>
   );
 };

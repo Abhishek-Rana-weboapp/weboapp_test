@@ -176,9 +176,9 @@ const Services = () => {
         </div>
 
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:mt-12 mt-6">
             {services.map((service, index)=>(
-              <div key={index} className="flex flex-col item-start text-start gap-3 md:p-4">
+              <div key={index} className="flex flex-col item-start text-start bg-white rounded-xl shadow-md gap-3 md:p-4">
                 <service.icon style={{color: service.color}} />
                 <h3 className="sm:text-3xl text-2xl font-semibold">{service.name}</h3>
                 <p className="text-gray-500">{service.description}</p>
@@ -189,7 +189,7 @@ const Services = () => {
     </div>
     <div className="sm:mt-32 mt-20 sm:py-20 py-10">
       <h3 className="text-[2rem] leading-[2.5rem] text-primary-900 font-semibold text-center max-w-lg mx-auto">We have your Tech Stack</h3>
-      <p className="text-center text-gray-500 max-w-lg mx-auto font-medium my-5">Our team is skilled in a wide range of technologies and tools to help you build your next project.</p>
+      <p className="text-center text-gray-500 max-w-lg mx-auto font-medium my-3">Our team is skilled in a wide range of technologies and tools to help you build your next project.</p>
       <Marquee duration={200}>
           {technologies.map((service, index)=>(
           <NavLink key={index} to={service.url || "#"} className="mx-4 select-none hover:text-primary-700 transition-all duration-150 ease-out md:text-5xl text-3xl font-extrabold text-neutral-300 uppercase p-2">

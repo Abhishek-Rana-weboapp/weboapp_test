@@ -18,7 +18,7 @@ const Home = () => {
       <LandingPage />
       <Services />
       <Industry />
-      <Testimonials />
+      {/* <Testimonials /> */}
       <WhyUs />
       <OurValues />
       <Insights/>

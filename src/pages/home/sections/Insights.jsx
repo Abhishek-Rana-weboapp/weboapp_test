@@ -20,19 +20,20 @@ const Insights = () => {
           })}
         </div>
         <div className="flex justify-center">
-          <Button onClick={() => {
+          {/* <Button onClick={() => {
             navigate("/blog");
           }} 
           className={"px-6 py-2"}>
             Show More
-          </Button>
-          {/* <Pin
+          </Button> */}
+          <Pin
+          variant="primary"
             onClick={() => {
               navigate("/blog");
             }}
           >
             Show More
-          </Pin> */}
+          </Pin>
         </div>
       </Wrapper>
     </section>

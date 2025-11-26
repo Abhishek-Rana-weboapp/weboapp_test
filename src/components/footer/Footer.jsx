@@ -96,10 +96,12 @@ const Footer = () => {
       <div>
         <div className="w-full max-w-max space-y-3 text-start sm:mx-auto">
           <h3 className="text-xl font-medium uppercase">Address</h3>
-          <div className="flex w-full items-center gap-2">
+          <div className="flex w-full items-start gap-2">
             <MapPin size={30} />
             <p className="max-w-64 text-wrap">
-              12345 Oakwood Drive, Apt 101, Springfield, IL 62704
+            Tricity Plaza, Peer Muchalla, Zirakpur, PB. India 160104
+            info@webappdiscovery.com
+            Mon – Fri: 9:30 am – 6:30pm
             </p>
           </div>
         </div>

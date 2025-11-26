@@ -1,57 +1,23 @@
-import React, { useEffect, useRef} from "react";
+import React from "react";
 import Wrapper from "../../../components/Wrapper";
 import Button from "../../../components/buttons/Button";
-import Modal from "../../../components/modal/Modal";
-import RequestServiceForm from "../../../components/forms/RequestServiceForm";
 import { motion } from "framer-motion";
 import { fadeUp } from "../../../utils/axios/animations/animations";
 import { useNavigate } from "react-router-dom";
 import ImageComponent from "../../../components/image/ImageComponent";
-import { useFormContext } from "../../../context/FormContext";
+import { Link } from "react-router-dom";
 import { Phone } from "lucide-react";
 import TextFadingUp from "../../../components/animateComponents/TextFadingUp";
 import FloatingIcons from "../../../components/ui/FloatingIcons";
 
 const LandingPage = () => {
-  const {serviceFormOpen, setServiceFormOpen} = useFormContext()
-  const isFormOpenRef = useRef(serviceFormOpen);
-
-  useEffect(() => {
-    isFormOpenRef.current = serviceFormOpen;
-  }, [serviceFormOpen]);
-
-  useEffect(() => {
-    const handleKeyDown = (event) => {
-      if (event.key === "Escape" && isFormOpenRef.current) {
-        setServiceFormOpen(false);
-      }
-    };
-    document.addEventListener("keydown", handleKeyDown);
-
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-    };
-  }, []);
 
   
   const texts = ["Web Development", "AI Automation", "Cloud Solutions"];
   return (
     <>
     <FloatingIcons />
-      <Modal
-        isOpen={serviceFormOpen}
-        handleModalClose={() => setServiceFormOpen(false)}
-        contentClass={"max-w-[1200px]"}
-      >
-        <motion.div
-          variants={fadeUp}
-          initial="initial"
-          whileInView={"animate"}
-          viewport={{ margin: "0px 0px -200px 0px", once: true }}
-        >
-          <RequestServiceForm />
-        </motion.div>
-      </Modal>
+     
       {/* <section className="relative bg-gradient-to-br from-[#dbe8f7] from-0% via-[#f6f6f6] via-[25%] to-[#97c0d0] to-100%"> */}
       <section className="relative sm:h-[90vh] sm:content-center">
         <Wrapper className={"py-8"}>
@@ -82,9 +48,11 @@ const LandingPage = () => {
                 <div
                   className="flex gap-4"
                 >
-                 <Button onClick={() => setServiceFormOpen(true)} className={"flex gap-2 items-center max-md:mx-auto justify-center md:px-5 md:py-3 px-3 py-2 font-semibold"}>
-                 <Phone /> Schedule a Call 
-                 </Button>
+                 <Link to="/contact">
+                   <Button className={"flex gap-2 items-center max-md:mx-auto justify-center md:px-5 md:py-3 px-3 py-2 font-semibold"}>
+                     <Phone /> Schedule a Call 
+                   </Button>
+                 </Link>
                 </div>
               </div>
               <div className="basis-1/2 content-center">

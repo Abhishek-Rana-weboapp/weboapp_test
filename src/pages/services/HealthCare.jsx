@@ -1,6 +1,6 @@
 import { useState } from "react";
 import HeroLayout from "../../components/layout/HeroLayout";
-import RequestServiceForm from "../../components/forms/RequestServiceForm";
+import ScheduleCallSection from "../../components/buttons/ScheduleCallSection";
 import StaggeredAnimations from "../../components/animateComponents/StaggeredAnimations";
 import { motion } from "framer-motion";
 import { animVariants } from "../../utils/axios/animations/animations";
@@ -141,9 +141,10 @@ const HealthCare = () => {
 
       {/* requestForm */}
 
-      <div className="mx-auto max-w-[1300px]">
-        <RequestServiceForm />
-      </div>
+      <ScheduleCallSection 
+        title="Ready to Revolutionize Healthcare?"
+        subtitle="Let's discuss how our healthcare technology solutions can improve patient outcomes and streamline operations."
+      />
     </div>
     </motion.div>
   );

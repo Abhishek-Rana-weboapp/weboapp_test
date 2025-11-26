@@ -5,7 +5,7 @@ import {
 } from "../../../utils/axios/animations/animations";
 import { Pin } from "../../../components/buttons/Pin";
 import ImageComponent from "../../../components/image/ImageComponent";
-import { useFormContext } from "../../../context/FormContext";
+import { Link } from "react-router-dom";
 import Wrapper from "../../../components/Wrapper";
 
 const WhyUs = () => {
@@ -67,7 +67,6 @@ const WhyUs = () => {
 export default WhyUs;
 
 const Section = () => {
-  const {setServiceFormOpen} = useFormContext()
   return (
     <div className="h-full w-full space-y-6 rounded-[2rem] bg-white p-8">
       <Pin arrow={false} className={"border border-black hover:cursor-default"}>
@@ -76,9 +75,11 @@ const Section = () => {
       <p className="text-start text-4xl md:text-6xl">
         We're your top choice for Web Development Services.
       </p>
-      <Pin variant="primary" onClick={()=>setServiceFormOpen(true)} className={" px-7 text-xl font-light"}>
-        Get Started
-      </Pin>
+      <Link to="/contact">
+        <Pin variant="primary" className={" px-7 text-xl font-light"}>
+          Get Started
+        </Pin>
+      </Link>
     </div>
   );
 };

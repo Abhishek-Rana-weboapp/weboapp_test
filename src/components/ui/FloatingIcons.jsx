@@ -11,11 +11,11 @@ const icons = [
 
 const FloatingIcons = () => {
   return (
-    <div className="absolute inset-0 pointer-events-none overflow-hidden">
+    <div className="absolute inset-0  overflow-hidden -z-10">
       {icons.map(({ id, Icon, className }) => (
         <motion.div
           key={id}
-          className={`absolute ${className}`}
+          className={`absolute ${className} -z-10`}
           animate={{ y: [0, -12, 0] }}
           transition={{
             duration: 4 + Math.random() * 2, // slightly different speed
