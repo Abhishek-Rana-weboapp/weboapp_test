@@ -2,6 +2,7 @@ import React from "react";
 import AnimatedLink from "../animateComponents/AnimatedLink";
 import { MapPin } from "lucide-react";
 import Wrapper from "../Wrapper";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const footerData = {
@@ -12,15 +13,31 @@ const Footer = () => {
       },
       {
         title: "Artificial Intelligence",
-        link: "/services/ai",
+        link: "/services/ai-development",
       },
       {
-        title: "SaaS",
-        link: "/services/saas",
+        title: "ERP Solutions",
+        link: "/services/erp-solutions",
       },
       {
-        title: "ERP",
-        link: "/services/erp",
+        title: "E-Commerce Development",
+        link: "/services/e-commerce-development",
+      },
+      {
+        title: "Mobile Development",
+        link: "/services/mobile-development",
+      },
+      {
+        title: "IT Consulting Services",
+        link: "/services/it-consulting-services",
+      },
+      {
+        title: "Offshore Development Team",
+        link: "/services/offshore-development-team",
+      },
+      {
+        title: "Zoho Development",
+        link: "/services/zoho-development",
       },
     ],
     Industries: [
@@ -30,15 +47,11 @@ const Footer = () => {
       },
       {
         title: "Finance",
-        link: "/industries/finance",
+        link: "/industries/finance-banking",
       },
       {
         title: "Education",
         link: "/industries/education",
-      },
-      {
-        title: "Healthcare",
-        link: "/industries/healthcare",
       },
       {
         title: "Finance",
@@ -59,10 +72,6 @@ const Footer = () => {
         title: "Contact Us",
         link: "/contact",
       },
-      {
-        title: "FAQs",
-        link: "/faqs",
-      },
     ],
   };
 
@@ -81,7 +90,7 @@ const Footer = () => {
             key={index}
           >
             <div className="w-max space-y-2 text-start sm:mx-auto">
-              <h3 className="text-lg font-semibold uppercase">{data}</h3>
+              <h3 className="text-lg font-semibold uppercase"><Link to={data === "Company" ? "/about":`/${data.toLowerCase()}`}>{data}</Link></h3>
               <ul className="flex flex-col gap-2">
                 {footerData[data].map((service, serviceIndex) => {
                   return <AnimatedLink key={serviceIndex} {...service} />;
