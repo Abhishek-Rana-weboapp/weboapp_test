@@ -1,20 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
-import Accordian from "../../components/accordian/Accordian";
-import { blogsData, checkboxes, sortButtons } from "../../static/testData";
 import BlogCard from "../../components/cards/BlogCard";
 import useDebounce from "../../hooks/useDebounce";
 import { motion } from "framer-motion";
-import SlideButton from "../../components/buttons/SlideButton";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import { BASE_URL } from "../../api/Url";
-import { FadeUp } from "../../components/animateComponents/FadeUp";
-import { animVariants, fadeUp } from "../../utils/axios/animations/animations";
+import { fadeUp } from "../../utils/axios/animations/animations";
 import useLogoColor from "../../hooks/useLogoColor";
 import Wrapper from "../../components/Wrapper";
 import Button from "../../components/buttons/Button";
 import FadeUpHeading from "../../components/animateComponents/FadeUpHeading";
 import { dummyBlogs } from "../../static/blogsData";
+import BreadCrumbs from "../../components/breadcrumbs/BreadCrumbs"
 
 
 const Blogs = () => {
@@ -69,6 +64,11 @@ const Blogs = () => {
           backgroundPosition: "center center",
         }}
       >
+        <Wrapper className={"absolute left-1/2 -translate-x-1/2 top-10 z-10"}>
+          <div className="">
+            <BreadCrumbs linkClass="text-white text-base" />
+          </div>
+        </Wrapper>
         <div className="absolute left-0 top-0 h-full w-full content-center bg-[rgba(0,0,0,0.4)]">
           Blog
           <p className="mt-4 p-2 text-sm sm:text-base">

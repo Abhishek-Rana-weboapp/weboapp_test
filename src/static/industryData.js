@@ -51,7 +51,7 @@ export const industryData = {
     hero: {
       heading: "Financial Technology Solutions",
       description: "Compliance-focused digital platforms enabling automation and secure financial operations for banks, fintech companies, and financial institutions.",
-      image: "/landing/Industries/finance.webp",
+      image: "/finance.svg",
     },
     overview: {
       title: "Secure Financial Technology Solutions",
@@ -97,7 +97,7 @@ export const industryData = {
     hero: {
       heading: "Real Estate Technology Solutions",
       description: "Modern property tech solutions for agents, developers, and buyers that streamline property management and transactions.",
-      image: "/landing/Industries/real-estate.webp",
+      image: "/real-estate.jpg",
     },
     overview: {
       title: "Empowering Real Estate with Technology",
@@ -235,7 +235,7 @@ export const industryData = {
     hero: {
       heading: "Manufacturing Technology Solutions",
       description: "Industry 4.0 solutions for automation, monitoring, and predictive maintenance that optimize manufacturing operations.",
-      image: "/landing/Industries/manufacturing.webp",
+      image: "/manufacturing.jpg",
     },
     overview: {
       title: "Industry 4.0 Manufacturing Solutions",
@@ -419,7 +419,7 @@ export const industryData = {
     hero: {
       heading: "Automotive Technology Solutions",
       description: "Custom platforms for dealerships, service centers, and vehicle management that streamline automotive operations.",
-      image: "/landing/Industries/automotive.webp",
+      image: "/automotive.jpg",
     },
     overview: {
       title: "Driving Automotive Innovation",
@@ -465,7 +465,7 @@ export const industryData = {
     hero: {
       heading: "Media & Entertainment Solutions",
       description: "Streaming-ready platforms with high-quality content delivery that engage audiences and monetize content effectively.",
-      image: "/landing/Industries/media.webp",
+      image: "/entertainment.svg",
     },
     overview: {
       title: "Powering Media and Entertainment",

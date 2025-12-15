@@ -5,7 +5,7 @@ const linkVariants = {
   initial: { y: 0 },
   animate: { y: "-100%", 
     transition:{
-        duration:1,
+        duration:0.6,
         ease:[.23,1,.32,1]
     }
    },
@@ -15,7 +15,7 @@ const overlayVariants = {
   initial: { y: "100%" },
   animate: { y: 0 , 
     transition:{
-        duration:1,
+        duration:0.6,
         ease:[.23,1,.32,1]
     }
    },

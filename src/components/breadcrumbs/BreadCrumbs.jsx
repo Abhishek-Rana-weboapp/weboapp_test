@@ -4,7 +4,7 @@ import { ChevronRight, Home } from 'lucide-react'
 
 
 
-const BreadCrumbs = ({containerClass}) => {
+const BreadCrumbs = ({containerClass, linkClass}) => {
  const location = useLocation()
  const pathnames = location.pathname.split('/').filter((x) => x)
   return (
@@ -13,7 +13,7 @@ const BreadCrumbs = ({containerClass}) => {
        <li className="flex items-center">
          <Link 
            to="/" 
-           className=" hover:text-blue-800 underline"
+           className={cn(" hover:text-blue-800 underline", linkClass)}
          >
            <Home size={18} />
          </Link>
@@ -26,13 +26,13 @@ const BreadCrumbs = ({containerClass}) => {
            <li key={name} className="flex items-center">
              <span className="mx-2"><ChevronRight size={15} color='black' /></span>
              {isLast ? (
-               <span className=" font-medium capitalize text-sm">
+               <span className={cn("font-medium capitalize text-sm", linkClass)}>
                  {name}
                </span>
              ) : (
                <Link
                  to={routeTo}
-                 className=" hover:text-blue-800 capitalize underline text-sm"
+                 className={cn(" hover:text-blue-800 capitalize underline text-sm", linkClass)}
                >
                  {name}
                </Link>

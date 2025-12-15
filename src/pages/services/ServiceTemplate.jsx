@@ -1,353 +1,253 @@
-'use client'
-
-import React, { useState, useEffect, } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import BreadCrumbs from "../../components/breadcrumbs/BreadCrumbs"
-import { useParams } from 'react-router-dom'
-import ScheduleCallSection from '../../components/buttons/ScheduleCallSection'
-import { servicesData } from '../../data/servicesData'
-
-
-// Move animations to a separate object for reuse
-const animations = {
-    fadeUp: {
-        initial: { opacity: 0, y: 50 },
-        animate: { opacity: 1, y: 0 },
-        transition: { duration: 0.6 }
-    },
-    fadeLeft: {
-        initial: { opacity: 0, x: -50 },
-        animate: { opacity: 1, x: 0 },
-        transition: { duration: 0.6 }
-    },
-    fadeRight: {
-        initial: { opacity: 0, x: 50 },
-        animate: { opacity: 1, x: 0 },
-        transition: { duration: 0.6 }
-    }
-}
-
-// Move reusable styles to constants
-const sectionClasses = {
-    wrapper: "py-20 px-4 md:px-8",
-    container: "max-w-7xl mx-auto",
-    heading: "text-3xl md:text-4xl font-bold text-center mb-16"
-}
+import React from 'react';
+import { useParams, useNavigate, Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import Wrapper from '../../components/Wrapper';
+import BreadCrumbs from '../../components/breadcrumbs/BreadCrumbs';
+import ImageComponent from '../../components/image/ImageComponent';
+import Button from '../../components/buttons/Button';
+import { Phone, Check, ArrowRight } from 'lucide-react';
+import { serviceData } from '../../static/serviceData';
+import ScheduleCallSection from '../../components/buttons/ScheduleCallSection';
 
 const ServiceTemplate = () => {
-    const { service } = useParams()
-    const serviceData = servicesData[service]
-    
-    if (!serviceData) return <div>Service not found</div>
+  const { service } = useParams();
+  const navigate = useNavigate();
+  
+  // Normalize the service parameter to match our data keys
+  const normalizedService = service?.toLowerCase().replace(/\s+/g, '-');
+  const data = serviceData[normalizedService];
 
-    const { hero, features, newsGrid, carousel, bottom } = serviceData
-
-    const [currentIndex, setCurrentIndex] = useState(0)
-    const [direction, setDirection] = useState(0)
-
-    // Combine slide functions
-    const handleSlide = (dir) => {
-        setDirection(dir)
-        setCurrentIndex((prev) => 
-            dir > 0 ? (prev + 1) % carousel.items.length 
-                   : (prev - 1 + carousel.items.length) % carousel.items.length
-        )
-    }
-
-    useEffect(() => {
-        const handleKeyDown = (e) => {
-            if (e.key === 'ArrowRight') handleSlide(1)
-            else if (e.key === 'ArrowLeft') handleSlide(-1)
-        }
-
-        window.addEventListener('keydown', handleKeyDown)
-        return () => window.removeEventListener('keydown', handleKeyDown)
-    }, [])
-
-    const handleDragEnd = (event, info) => {
-        if (info.offset.x < -50) handleSlide(1)
-        else if (info.offset.x > 50) handleSlide(-1)
-    }
-
-    const slideVariants = {
-        enter: (direction) => ({
-            x: direction > 0 ? '100%' : '-100%',
-            opacity: 0,
-            scale: 0.95
-        }),
-        center: {
-            x: 0,
-            opacity: 1,
-            scale: 1
-        },
-        exit: (direction) => ({
-            x: direction < 0 ? '100%' : '-100%',
-            opacity: 0,
-            scale: 0.95
-        }),
-    }
-
-    // Create a reusable motion card component
-    const MotionCard = ({ delay = 0, className, children }) => (
-        <motion.div 
-            className={`bg-white p-8 rounded-lg shadow-sm ${className}`}
-            {...animations.fadeUp}
-            viewport={{ once: true }}
-            transition={{ ...animations.fadeUp.transition, delay }}
-        >
-            {children}
-        </motion.div>
-    )
-
+  if (!data) {
     return (
-        <div className="min-h-screen">
-            {/* Hero Section */}
-            <div className="relative h-screen">
-                <div 
-                    className="absolute inset-0 w-full h-full"
-                    style={{
-                        backgroundImage: `url(${hero.imgUrl})`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                    }}
+      <Wrapper className="py-20 text-center">
+        <h1 className="text-4xl font-bold text-primary-700 mb-4">Service Not Found</h1>
+        <p className="text-gray-600 mb-8">The service you're looking for doesn't exist.</p>
+        <Button onClick={() => navigate('/services')}>Back to Services</Button>
+      </Wrapper>
+    );
+  }
+
+  return (
+    <div className="min-h-screen">
+      {/* Hero Section */}
+      <section className="relative min-h-[60vh] flex items-center bg-gradient-to-br from-primary-50 to-white">
+        <Wrapper className="py-12 md:py-20">
+          <div className="mb-6">
+            <BreadCrumbs />
+          </div>
+          <div className="grid md:grid-cols-2 gap-8 items-center text-start">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              className="space-y-6"
+            >
+              <span className="block w-max text-sm font-semibold uppercase tracking-widest text-primary-700">
+                {data.title} Services
+              </span>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary-900 leading-tight">
+                {data.hero.heading}
+              </h1>
+              <p className="text-lg md:text-xl text-gray-600 leading-relaxed">
+                {data.hero.description}
+              </p>
+              <div className="flex gap-4 flex-wrap">
+                <Link to="/contact">
+                  <Button className="flex items-center gap-2 px-6 py-3 font-semibold">
+                    <Phone size={18} /> Schedule a Call
+                  </Button>
+                </Link>
+                <Button
+                  variant="outline"
+                  onClick={() => navigate('/services')}
+                  className="flex items-center gap-2 px-6 py-3 font-semibold"
                 >
-                    <div className="absolute inset-0 bg-black/50" />
+                  View All Services <ArrowRight size={18} />
+                </Button>
+              </div>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="relative"
+            >
+              <ImageComponent
+                src={data.hero.image}
+                webpSrc={data.hero.image}
+                alt={data.title}
+                className="w-full max-h-[500px] rounded-2xl shadow-lg object-cover"
+              />
+            </motion.div>
+          </div>
+        </Wrapper>
+      </section>
+
+      {/* Overview Section */}
+      <section className="py-16 bg-white">
+        <Wrapper>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="max-w-4xl mx-auto text-center mb-12"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-primary-900 mb-6">
+              {data.overview.title}
+            </h2>
+            <p className="text-lg text-gray-600 leading-relaxed">
+              {data.overview.description}
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
+            {data.overview.keyPoints.map((point, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="bg-zinc-50 p-6 rounded-xl border border-gray-100"
+              >
+                <div className="flex items-start gap-3">
+                  <Check className="text-primary-700 mt-1 flex-shrink-0" size={20} />
+                  <p className="text-gray-700 font-medium">{point}</p>
                 </div>
+              </motion.div>
+            ))}
+          </div>
+        </Wrapper>
+      </section>
 
-                <div className="relative z-10 h-full flex flex-col justify-center px-4">
-                    <div className="flex flex-col max-w-4xl md:ml-20">
-                        <BreadCrumbs items={hero.breadcrumbs} />
-                        <motion.h1
-                            className="text-4xl md:text-6xl font-bold w-max text-white text-center overflow-hidden"
-                            initial={{ opacity: 0, y: 100 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{
-                                duration: 0.8,
-                                ease: [0.43, 0.13, 0.23, 0.96]
-                            }}
-                        >
-                            {hero.heading.split(' ').map((word, index) => (
-                                <motion.span
-                                    key={index}
-                                    className="inline-block mr-2"
-                                    initial={{ opacity: 0, y: 50 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{
-                                        duration: 0.8,
-                                        delay: index * 0.2,
-                                        ease: [0.43, 0.13, 0.23, 0.96]
-                                    }}
-                                >
-                                    {word}
-                                </motion.span>
-                            ))}
-                        </motion.h1>
-                    </div>
-                </div>
-            </div>
+      {/* Services Section */}
+      <section className="py-16 bg-zinc-100">
+        <Wrapper>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-primary-900 mb-4">
+              Our {data.title} Services
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Comprehensive solutions tailored to meet your business needs
+            </p>
+          </motion.div>
 
-            {/* Features Section */}
-            <section className={`${sectionClasses.wrapper} bg-white`}>
-                <div className={sectionClasses.container}>
-                    <motion.h2 className={sectionClasses.heading}>
-                        {features.title}
-                    </motion.h2>
-                    <div className="grid md:grid-cols-2 gap-12 items-center">
-                        <motion.div 
-                            className="space-y-6"
-                            initial={{ opacity: 0, x: -50 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.6 }}
-                        >
-                            <h3 className="text-2xl font-semibold">
-                                {features.mainContent.heading}
-                            </h3>
-                            <p className="text-gray-600 leading-relaxed">
-                                {features.mainContent.description}
-                            </p>
-                            <ul className="space-y-3">
-                                {features.mainContent.bulletPoints.map((point, index) => (
-                                    <li key={index} className="flex items-center gap-3">
-                                        <span className="text-blue-600">✓</span>
-                                        {point}
-                                    </li>
-                                ))}
-                            </ul>
-                        </motion.div>
+          <div className="grid md:grid-cols-2 gap-8">
+            {data.services.map((service, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow"
+              >
+                <h3 className="text-2xl font-semibold text-primary-900 mb-3">
+                  {service.title}
+                </h3>
+                <p className="text-gray-600 leading-relaxed">
+                  {service.description}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </Wrapper>
+      </section>
 
-                        <motion.div
-                            className="relative h-[400px] rounded-lg overflow-hidden"
-                            initial={{ opacity: 0, x: 50 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.6, delay: 0.2 }}
-                        >
-                            <img 
-                                src={features.image} 
-                                alt="Service illustration"
-                                className="w-full h-full object-cover"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-                        </motion.div>
-                    </div>
-                </div>
-            </section>
+      {/* Benefits Section */}
+      <section className="py-16 bg-white">
+        <Wrapper>
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <h2 className="text-3xl md:text-4xl font-bold text-primary-900 mb-6">
+                Benefits for Your Business
+              </h2>
+              <ul className="space-y-4">
+                {data.benefits.map((benefit, index) => (
+                  <motion.li
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    className="flex items-start gap-3"
+                  >
+                    <Check className="text-primary-700 mt-1 flex-shrink-0" size={20} />
+                    <span className="text-gray-700 text-lg">{benefit}</span>
+                  </motion.li>
+                ))}
+              </ul>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="bg-gradient-to-br from-primary-50 to-primary-100 p-8 rounded-2xl"
+            >
+              <h3 className="text-2xl font-semibold text-primary-900 mb-6">
+                Technologies We Use
+              </h3>
+              <div className="flex flex-wrap gap-3">
+                {data.technologies.map((tech, index) => (
+                  <span
+                    key={index}
+                    className="bg-white px-4 py-2 rounded-lg text-primary-700 font-medium shadow-sm"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        </Wrapper>
+      </section>
 
-            {/* News Grid Section */}
-            <section className={`${sectionClasses.wrapper} bg-gray-50`}>
-                <div className={sectionClasses.container}>
-                    <div className="grid md:grid-cols-2 gap-12 mb-16">
-                        <div>
-                            <motion.h2 
-                                className="text-4xl font-bold mb-4"
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.6 }}
-                            >
-                                {bottom.mainContent.title}
-                            </motion.h2>
-                            <motion.p 
-                                className="text-gray-600 mb-6"
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.6, delay: 0.2 }}
-                            >
-                                {bottom.mainContent.description}
-                            </motion.p>
-                            <motion.button 
-                                className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.6, delay: 0.3 }}
-                            >
-                                {bottom.mainContent.ctaText}
-                            </motion.button>
-                        </div>
-                        <motion.div 
-                            className="bg-white p-6 rounded-lg shadow-sm"
-                            initial={{ opacity: 0, x: 50 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.6 }}
-                        >
-                            <h3 className="text-xl font-semibold mb-4">
-                                {bottom.services.title}
-                            </h3>
-                            <ul className="space-y-4">
-                                {bottom.services.items.map((item, index) => (
-                                    <li key={index}>{item}</li>
-                                ))}
-                            </ul>
-                        </motion.div>
-                    </div>
+      {/* CTA Section */}
+      <section className="py-16 bg-primary-50">
+        <Wrapper>
+          <div className="max-w-4xl mx-auto text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <h2 className="text-3xl md:text-4xl font-bold text-primary-900 mb-6">
+                Ready to Transform Your Business?
+              </h2>
+              <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+                Let's discuss how our {data.title.toLowerCase()} solutions can help you achieve your business goals and drive growth.
+              </p>
+              <Link to="/contact">
+                <Button className="flex items-center gap-2 px-8 py-4 text-lg font-semibold mx-auto">
+                  <Phone size={20} /> Schedule a Consultation
+                </Button>
+              </Link>
+            </motion.div>
+          </div>
+        </Wrapper>
+      </section>
 
-                    <div className="grid md:grid-cols-3 gap-8">
-                        {bottom.cards.map((card, index) => (
-                            <MotionCard key={index}>
-                                <div className="mb-4">
-                                    <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M12 6V18M6 12H18" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-                                    </svg>
-                                </div>
-                                <h3 className="text-xl font-semibold mb-3">
-                                    {card.title}
-                                </h3>
-                                <p className="text-gray-600 mb-4">
-                                    {card.description}
-                                </p>
-                                <button className="text-blue-600 hover:underline">
-                                    {card.ctaText}
-                                </button>
-                            </MotionCard>
-                        ))}
-                    </div>
-                </div>
-            </section>
+      {/* Request Service Form */}
+      <ScheduleCallSection 
+        title={`Ready to Transform Your Business with ${data?.title}?`}
+        subtitle={`Let's discuss how our ${data?.title.toLowerCase()} solutions can help you achieve your business goals and drive growth.`}
+      />
+    </div>
+  );
+};
 
-            {/* Carousel Section */}
-            <section className={`${sectionClasses.wrapper} bg-white`}>
-                <div className={sectionClasses.container}>
-                    <motion.h2 className={sectionClasses.heading}>
-                        {carousel.title}
-                    </motion.h2>
-                    <div className="relative w-full md:h-[500px] h-[700px] overflow-hidden">
-                        <AnimatePresence initial={false} custom={direction}>
-                            <motion.div
-                                key={currentIndex}
-                                custom={direction}
-                                variants={slideVariants}
-                                initial="enter"
-                                animate="center"
-                                exit="exit"
-                                transition={{
-                                    x: { 
-                                        type: 'spring', 
-                                        stiffness: 200,
-                                        damping: 25,
-                                        mass: 0.5
-                                    },
-                                    opacity: { duration: 0.4 },
-                                    scale: { duration: 0.4 }
-                                }}
-                                drag="x"
-                                dragConstraints={{ left: 0, right: 0 }}
-                                dragElastic={0.7}
-                                onDragEnd={handleDragEnd}
-                                className="absolute w-full h-full flex items-center justify-center"
-                            >
-                                <div className="bg-white rounded-xl shadow-lg overflow-hidden flex max-w-4xl w-full flex-col-reverse sm:flex-row">
-                                    <div className="sm:w-1/2 p-8 flex flex-col justify-center">
-                                        <h3 className="text-2xl font-semibold mb-4">
-                                            {carousel.items[currentIndex].title}
-                                        </h3>
-                                        <p className="text-gray-600 leading-relaxed">
-                                            {carousel.items[currentIndex].description}
-                                        </p>
-                                    </div>
-
-                                    <div className="sm:w-1/2 relative">
-                                        <img 
-                                            src={carousel.items[currentIndex].image} 
-                                            alt={carousel.items[currentIndex].title}
-                                            className="w-full h-full object-cover"
-                                        />
-                                        <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent" />
-                                    </div>
-                                </div>
-                            </motion.div>
-                        </AnimatePresence>
-
-                        <button
-                            onClick={() => handleSlide(-1)}
-                            className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-50 rounded-full p-2 z-10 hover:bg-opacity-75 transition-all"
-                            aria-label="Previous slide"
-                        >
-                            ←
-                        </button>
-                        <button
-                            onClick={() => handleSlide(1)}
-                            className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-50 rounded-full p-2 z-10 hover:bg-opacity-75 transition-all"
-                            aria-label="Next slide"
-                        >
-                            →
-                        </button>
-                    </div>
-                </div>
-            </section>
-
-            {/* Bottom Section */}
-            
-
-            <ScheduleCallSection 
-                title="Ready to Elevate Your Business?"
-                subtitle="Let's discuss how our expert services can help transform your digital presence and drive growth."
-            />
-        </div>
-    )
-}
-
-export default ServiceTemplate
+export default ServiceTemplate;

@@ -1,6 +1,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import FadeUpHeading from "../../components/animateComponents/FadeUpHeading";
 import { fadeUp } from "../../utils/axios/animations/animations";
 import { 
@@ -36,7 +37,7 @@ const services = [
   },
   {
     id: 2,
-    title: "Website Development",
+    title: "Web Development",
     description: "Modern, responsive websites that deliver exceptional user experiences. From simple landing pages to complex web applications.",
     icon: Code,
     color: "from-purple-500 to-pink-500",
@@ -133,15 +134,34 @@ const FloatingElements = () => {
 const ServiceCard = ({ service, index }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
+  const navigate = useNavigate();
+
+  // Map service titles to URL slugs
+  const getServiceSlug = (title) => {
+    const slugMap = {
+      "Zoho Development": "zoho-development",
+      "Web Development": "web-development",
+      "E-Commerce Development": "e-commerce-development",
+      "ERP Solutions": "erp-solutions",
+      "IT Consulting Services": "it-consulting-services",
+      "Offshore Development Team": "offshore-development-team",
+      "Mobile Development": "mobile-development",
+      "AI Development": "ai-development",
+    };
+    return slugMap[title] || title.toLowerCase().replace(/\s+/g, '-');
+  };
+
+  const handleClick = () => {
+    navigate(`/services/${getServiceSlug(service.title)}`);
+  };
 
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 50 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-      transition={{ duration: 0.3 }}
-      whileHover={{ y: -10, scale: 1.02 }}
-      className="group relative overflow-hidden rounded-2xl bg-white p-6 shadow-lg transition-shadow duration-200 hover:shadow-2xl sm:p-8"
+      whileHover={{y:-5, scale: 1.01 }}
+      transition={{type: "spring", duration: 0.2}}
+      onClick={handleClick}
+      className="group relative overflow-hidden rounded-2xl bg-white p-6 shadow-lg transition-shadow duration-100 hover:shadow-2xl sm:p-8 cursor-pointer"
     >
       {/* Gradient Background */}
       <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 transition-opacity duration-200 group-hover:opacity-5`} />
@@ -444,12 +464,9 @@ export default function Services() {
         </div>
         
         <div className="relative mx-auto max-w-6xl text-center">
-          <FadeUpHeading className="mb-4 text-4xl font-bold sm:mb-6 sm:text-5xl md:text-6xl lg:text-7xl">
-            Our
-            <span className="bg-gradient-to-r from-[#0098f4] via-[#1b3f8f] to-[#00d4ff] bg-clip-text text-transparent">
-              {" "}Services
-            </span>
-          </FadeUpHeading>
+          <h1 className="mb-4 text-4xl font-bold sm:mb-6 sm:text-5xl md:text-6xl lg:text-7xl text-primary-700">
+            Our Services
+          </h1>
           
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -481,7 +498,7 @@ export default function Services() {
         
         <div className="relative mx-auto max-w-7xl">
           <div className="mb-12 text-center sm:mb-16">
-            <h2 className="mb-3 text-2xl font-bold text-gray-900 sm:mb-4 sm:text-3xl md:text-4xl">
+            <h2 className="mb-3 text-2xl font-bold text-primary-700 sm:mb-4 sm:text-3xl md:text-4xl">
               What We Offer
             </h2>
             <p className="text-base text-gray-600 sm:text-lg">

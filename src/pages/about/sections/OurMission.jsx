@@ -36,7 +36,7 @@ const OurMission = () => {
   ];
   return (
     <Wrapper className="md:py-10 space-y-8">
-      <FadeUpHeading >Our Mission</FadeUpHeading>
+      <h2 className="md:text-5xl text-2xl font-bold text-[#0047AB]" animate={false} >Our Mission</h2>
       <motion.div initial="initial" whileInView={"animate"} transition={{staggerChildren:0.1}} viewport={{margin:"0px 0px -200px 0px", once:true}} className="grid grid-cols-[repeat(auto-fit,minmax(350px,_1fr))]  gap-4">
           {points.map((point, index) => {
             return (

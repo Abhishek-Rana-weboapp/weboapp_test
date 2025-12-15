@@ -216,7 +216,7 @@ const IndustryTemplate = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-primary-50">
+      {/* <section className="py-16 bg-primary-50">
         <Wrapper>
           <div className="max-w-4xl mx-auto text-center">
             <motion.div
@@ -239,7 +239,7 @@ const IndustryTemplate = () => {
             </motion.div>
           </div>
         </Wrapper>
-      </section>
+      </section> */}
 
       {/* Request Service Form */}
       <ScheduleCallSection 

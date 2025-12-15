@@ -12,6 +12,7 @@
   "dependencies": {
     "@babel/preset-react": "^7.26.3",
     "@babel/register": "^7.25.9",
+    "@emailjs/browser": "^4.4.1",
     "@hookform/resolvers": "^3.10.0",
     "@tiptap/extension-code-block": "^2.6.6",
     "@tiptap/extension-color": "^2.5.8",

@@ -3,12 +3,14 @@ import Wrapper from '../../components/Wrapper';
 import BreadCrumbs from '../../components/breadcrumbs/BreadCrumbs';
 import ImageComponent from '../../components/image/ImageComponent';
 import { industries } from '../../static/servicesData';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Button from '../../components/buttons/Button';
 import { Phone } from 'lucide-react';
 
 const Industries =
   () => {
+
+    const navigate = useNavigate()
 
     return (
       <>
@@ -63,7 +65,7 @@ const Industries =
              {
               industries.map((industry, i) => {
                 return <div key={i} className='bg-white p-4 rounded-xl text-start shadow-md py-6'>
-                  <h3 className='md:text-2xl uppercase font-semibold text-primary-700 mb-2 hover:underline hover:font-bold transition-all duration-300'><Link to={`/industries/${industry.url}`}>{industry.title}</Link></h3>
+                  <h3 className='md:text-2xl uppercase font-semibold text-primary-700 mb-2 hover:underline transition-all duration-300'><Link to={`/industries/${industry.url}`}>{industry.title}</Link></h3>
                   <p className='text-black/70 mb-2'>{industry.description}</p>
 
                   <ul className='grid grid-cols-2'>
@@ -83,15 +85,15 @@ const Industries =
 
       <section  >
           <Wrapper>
-             <div className='flex gap-2 items-center'>
+             <div className='flex sm:flex-row flex-col gap-2 items-center'>
                  <div>
-                    <h2 className='md:text-4xl font-bold text-start text-primary-700'>
+                    <h2 className='md:text-4xl font-bold sm:text-start text-primary-700'>
                         Ready to Discuss Your Project?
                     </h2>
-                    <p className='text-black/70 my-4 text-start'>
+                    <p className='text-black/70 my-4 sm:text-start'>
                       Contact us today to learn more about how our software solutions can help your business thrive in the digital age.
                     </p>
-                    <Button onClick={()=>setIsFormOpen(true)} className={" flex items-center gap-2 px-5 py-2 mt-2"}>
+                    <Button onClick={()=>navigate("/contact")} className={" flex items-center max-sm:mx-auto gap-2 px-5 py-2 mt-2"}>
                        <Phone size={18}/> Schedule a Call
                     </Button>
                  </div>

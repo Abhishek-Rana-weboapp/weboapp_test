@@ -95,13 +95,19 @@ const Footer = () => {
       {/* Contact */}
       <div>
         <div className="w-full max-w-max space-y-3 text-start sm:mx-auto">
-          <h3 className="text-xl font-medium uppercase">Address</h3>
+          <h3 className="text-xl font-medium uppercase">Addresses</h3>
           <div className="flex w-full items-start gap-2">
             <MapPin size={30} />
             <p className="max-w-64 text-wrap">
-            Tricity Plaza, Peer Muchalla, Zirakpur, PB. India 160104
-            info@webappdiscovery.com
-            Mon – Fri: 9:30 am – 6:30pm
+            8th Floor, Plot No. 16, Sector 22, IT Park, Panchkula, Haryana – 134116
+            </p>
+          </div>
+
+          <div className="flex w-full items-start gap-2">
+            <MapPin size={30} />
+            <p className="max-w-64 text-wrap">
+            #B-1107, Tower T4 (11th Floor)
+             Plot No. 17, Tech Zone IV, Greater Noida West,Uttar Pradesh – 201301
             </p>
           </div>
         </div>

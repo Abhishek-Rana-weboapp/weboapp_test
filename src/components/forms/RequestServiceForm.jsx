@@ -1,5 +1,4 @@
-import Button from "../buttons/Button";
-import Wrapper from "../Wrapper";
+
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -7,6 +6,7 @@ import { countries } from "../../static/data";
 import { motion, AnimatePresence } from "framer-motion";
 import { User, Mail, Phone, Building, Globe, Send, CheckCircle, AlertCircle, X } from "lucide-react";
 import { useState, useEffect } from "react";
+import emailjs from "@emailjs/browser";
 
 const zodSchema = z.object({
   firstname: z.string().min(3, { message: "Required" }),
@@ -40,17 +40,28 @@ const RequestServiceForm = () => {
 
   const onSubmit = async (data) => {
     setIsSubmitting(true);
+    emailjs.send(import.meta.env.VITE_EMAILJS_SERVICEID, import.meta.env.VITE_EMAILJS_CONTACT_TEMPLATEID, data, import.meta.env.VITE_EMAILJS_PUBLIC_KEY)
+    .then((result) => {
+      console.log(result.text);
+      setIsSubmitting(false);
+      setIsSubmitted(true);
+      reset();
+      setTimeout(() => setIsSubmitted(false), 8000);
+    }, (error) => {
+      console.log(error.text);
+    });
     
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 2000));
     
-    console.log("Form submitted:", data);
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    reset();
+    // // Simulate API call
+    // await new Promise(resolve => setTimeout(resolve, 2000));
     
-    // Reset success message after 4 seconds
-    setTimeout(() => setIsSubmitted(false), 8000);
+    // console.log("Form submitted:", data);
+    // setIsSubmitting(false);
+    // setIsSubmitted(true);
+    // reset();
+    
+    // // Reset success message after 4 seconds
+    // setTimeout(() => setIsSubmitted(false), 8000);
   };
 
   // Close modal when clicking outside or pressing Escape
@@ -224,7 +235,7 @@ const RequestServiceForm = () => {
                   {...register("firstname")}
                   type="text"
                   placeholder="Enter your first name"
-                  className={`w-full px-4 py-4 rounded-xl border-2 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent ${
+                  className={`w-full px-4 py-2 rounded-xl border-2 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent ${
                     errors.firstname ? 'border-red-300 bg-red-50' : 'border-gray-200 hover:border-gray-300'
                   }`}
                 />
@@ -249,7 +260,7 @@ const RequestServiceForm = () => {
                   {...register("lastname")}
                   type="text"
                   placeholder="Enter your last name"
-                  className="w-full px-4 py-4 rounded-xl border-2 border-gray-200 hover:border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-300"
+                  className="w-full px-4 py-2 rounded-xl border-2 border-gray-200 hover:border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-300"
                 />
               </div>
             </motion.div>
@@ -265,7 +276,7 @@ const RequestServiceForm = () => {
                   {...register("email")}
                   type="email"
                   placeholder="your.email@company.com"
-                  className={`w-full px-4 py-4 rounded-xl border-2 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent ${
+                  className={`w-full px-4 py-2 rounded-xl border-2 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent ${
                     errors.email ? 'border-red-300 bg-red-50' : 'border-gray-200 hover:border-gray-300'
                   }`}
                 />
@@ -288,7 +299,7 @@ const RequestServiceForm = () => {
                 </label>
                 <select
                   {...register("country")}
-                  className="w-full px-4 py-4 rounded-xl border-2 border-gray-200 hover:border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-300 bg-white"
+                  className="w-full px-4 py-2 rounded-xl border-2 border-gray-200 hover:border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-300 bg-white"
                 >
                   {countries.map((country, index) => (
                     <option value={country} key={index}>
@@ -310,7 +321,7 @@ const RequestServiceForm = () => {
                   {...register("phone")}
                   type="tel"
                   placeholder="+1 (555) 123-4567"
-                  className={`w-full px-4 py-4 rounded-xl border-2 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent ${
+                  className={`w-full px-4 py-2 rounded-xl border-2 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent ${
                     errors.phone ? 'border-red-300 bg-red-50' : 'border-gray-200 hover:border-gray-300'
                   }`}
                 />
@@ -335,7 +346,7 @@ const RequestServiceForm = () => {
                   {...register("company")}
                   type="text"
                   placeholder="Your Company Ltd."
-                  className="w-full px-4 py-4 rounded-xl border-2 border-gray-200 hover:border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-300"
+                  className="w-full px-4 py-2 rounded-xl border-2 border-gray-200 hover:border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-300"
                 />
               </div>
             </motion.div>
@@ -345,7 +356,7 @@ const RequestServiceForm = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className={`w-full md:w-auto mx-auto flex items-center justify-center gap-3 px-12 py-4 rounded-xl font-semibold text-lg transition-all duration-300 ${
+                className={`w-full md:w-auto mx-auto flex items-center justify-center gap-3 px-12 py-3 rounded-xl font-semibold text-lg transition-all duration-300 ${
                   isSubmitting 
                     ? 'bg-gray-400 cursor-not-allowed' 
                     : 'bg-gradient-to-r from-primary-700 to-blue-600 hover:from-primary-800 hover:to-blue-700 transform hover:scale-105 hover:shadow-lg'

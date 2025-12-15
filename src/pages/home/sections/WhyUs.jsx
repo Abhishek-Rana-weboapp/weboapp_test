@@ -72,11 +72,11 @@ const Section = () => {
       <Pin arrow={false} className={"border border-black hover:cursor-default"}>
         Why Choose us
       </Pin>
-      <p className="text-start text-4xl md:text-6xl">
+      <p className="text-start text-3xl md:text-6xl">
         We're your top choice for Web Development Services.
       </p>
       <Link to="/contact">
-        <Pin variant="primary" className={" px-7 text-xl font-light"}>
+        <Pin variant="primary" className={"mt-4 px-7 md:text-xl font-light"}>
           Get Started
         </Pin>
       </Link>

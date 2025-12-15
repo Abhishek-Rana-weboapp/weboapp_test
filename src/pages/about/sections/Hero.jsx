@@ -14,20 +14,12 @@ const Hero = () => {
         <div className="content-center text-start md:w-1/2 md:p-2">
           <div className="mx-auto max-w-[600px] space-y-6">
             <motion.div
-              variants={fadeUp}
-              initial="initial"
-              whileInView={"animate"}
-              viewport={{ margin: "0px 0px -50px 0px", once: true }}
             >
               <h1 className="text-2xl font-semibold md:text-5xl">
                 Delivering Excellence in Digital Innovation Since 2021
               </h1>
             </motion.div>
             <motion.div
-              variants={fadeUp}
-              initial="initial"
-              whileInView={"animate"}
-              viewport={{ margin: "0px 0px -50px 0px", once: true }}
               className="flex flex-col gap-2"
             >
               <h2 className="text-lg md:text-2xl">Our Story</h2>
@@ -56,20 +48,12 @@ const Hero = () => {
             </motion.div>
 
             <motion.div
-              variants={fadeUp}
-              initial="initial"
-              whileInView={"animate"}
-              viewport={{ margin: "0px 0px -50px 0px", once: true }}
             >
               <Pin>Read More</Pin>
             </motion.div>
           </div>
         </div>
         <motion.div
-          variants={fadeUp}
-          initial="initial"
-          whileInView={"animate"}
-          viewport={{ margin: "0px 0px -50px 0px", once: true }}
           className="md:w-1/2"
         >
           <img
