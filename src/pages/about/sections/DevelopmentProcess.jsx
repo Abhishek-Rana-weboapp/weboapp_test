@@ -8,7 +8,7 @@ const DevelopmentProcess = () => {
       title: "Discovery and Planning",
       description:
         "Understand client goals, target audience, and technical requirements. Create a project roadmap, including timelines and deliverables.",
-        icon:"/icons/aboutpage/1.png"
+        icon:"/icons/aboutpage/image (1).png"
     },
     {
       title: "Design & Prototyping",
@@ -20,25 +20,25 @@ const DevelopmentProcess = () => {
       title: "Development",
       description:
         "Implement front-end and back-end development using the latest frameworks and technologies.",
-        icon:"/icons/aboutpage/1.png"
+        icon:"/icons/aboutpage/image (5).png"
     },
     {
       title: "Testing & Quality Assurance",
       description:
         "Conduct rigorous testing for functionality, performance, and security. Fix bugs and ensure smooth user experiences.",
-        icon:"/icons/aboutpage/1.png"
+        icon:"/icons/aboutpage/image (6).png"
     },
     {
       title: "Deployment & Production",
       description:
         "Our deployment process is incremental and ongoing. Every increment when confirmed will be integrated and deployed to final production system",
-        icon:"/icons/aboutpage/1.png"
+        icon:"/icons/aboutpage/image (7).png"
     },
     {
       title: "Continuous Improvement",
       description:
         "Moving Forward from the initial build, Improving bugs, Planning for the next build and repeating development cycle.",
-        icon:"/icons/aboutpage/1.png"
+        icon:"/icons/aboutpage/image (8).png"
     },
   ];
 
@@ -67,7 +67,7 @@ const DevelopmentProcess = () => {
                 <div className="relative w-max">
                   <div className={`text-6xl absolute font-bold -z-1 text-black/20 -top-7 left-1/2 -translate-x-1/2 w-max group-hover:text-sky-600/70 transition-colors duration-300 ease-in-out`}>{(index+1).toString().padStart(2,"0")}</div>
                   <img
-                    className=" size-12 md:size-16 object-cover"
+                    className="size-16 md:size-20 object-contain"
                     src={point.icon}
                     alt=""
                   />

@@ -50,18 +50,7 @@ const Contact = () => {
           </motion.div>
 
           {/* Contact Info Cards */}
-          <motion.div variants={fadeInUp} className="grid lg:grid-cols-3 md:grid-cols-2 gap-6 mb-16">
-            <div className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">
-              <div className="flex items-center gap-4">
-                <div className="flex-shrink-0 w-12 h-12 bg-primary-100 rounded-xl flex items-center justify-center">
-                  <Phone className="text-primary-600 w-6 h-6" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="font-semibold text-gray-800">Call Us</h3>
-                  <p className="text-gray-600">+1 (555) 123-4567</p>
-                </div>
-              </div>
-            </div>
+          <motion.div variants={fadeInUp} className="grid md:grid-cols-2 gap-6 mb-16">
 
             <div className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">
               <div className="flex items-center gap-4">
@@ -70,7 +59,7 @@ const Contact = () => {
                 </div>
                 <div className="flex-1">
                   <h3 className="font-semibold text-gray-800">Email Us</h3>
-                  <p className="text-gray-600">hello@weboappdiscovery.com</p>
+                  <p className="text-gray-600">info@weboappdiscovery.com</p>
                 </div>
               </div>
             </div>

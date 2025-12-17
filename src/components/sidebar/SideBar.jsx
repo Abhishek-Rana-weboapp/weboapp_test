@@ -1,37 +1,42 @@
 import  { useState } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import {
   easeInOut,
   motion,
   MotionConfig,
 } from "framer-motion";
+import Button from "../buttons/Button";
 
 const links = [
   {
-    label: "Home",
-    to: "/",
+    label: "solutions",
+    to: "/services",
   },
   {
-    label: "Blog",
-    to: "/blog",
-  },
-  {
-    label: "Industries",
+    label: "industries",
     to: "/industries",
   },
   {
-    label: "Portfolio",
+    label: "portfolio",
     to: "/portfolio",
   },
   {
-    label: "Services",
-    to: "/services",
+    label: "about",
+    to: "/about",
+  },
+  {
+    label: "blog",
+    to: "/blog",
+  },
+  {
+    label: "contact",
+    to: "/contact",
   },
 ];
 
 const SideBar = ({ color }) => {
   const [navOpen, setNavOpen] = useState(false);
-
+  const navigate = useNavigate();
   return (
     <div className="w-max md:hidden">
       <AnimatedBurgerButton
@@ -43,9 +48,10 @@ const SideBar = ({ color }) => {
         initial={{ x: "100%" }}
         animate={{ x: navOpen ? "0%" : "100%" }}
         transition={{ duration: 0.5, ease: easeInOut }}
-        className="fixed right-0 top-0 h-screen w-full max-w-[300px] pt-20 space-y-8 bg-white-900 rounded-md bg-white bg-clip-padding backdrop-filter backdrop-blur text-black/70"
+        className="fixed right-0 top-0 h-screen w-full max-w-[300px] pt-20 space-y-2 bg-white-900 rounded-md bg-white bg-clip-padding backdrop-filter backdrop-blur text-black/70"
       >
         <Links navOpen={navOpen} setNavOpen={setNavOpen} />
+        <Button onClick={()=>navigate("/contact")} className={"px-6 py-2"}>Schedule a Call</Button>
       </motion.div>
     </div>
   );
@@ -70,7 +76,7 @@ const Links = ({ navOpen, setNavOpen }) => {
           <span className="relative">
             {link.label}
             <span
-              className={`absolute bottom-0 left-0 h-1 w-full origin-left bg-black transition-transform duration-300 ease-in-out group-hover:scale-x-100 ${location.pathname === link.to ? "scale-x-100" : "scale-x-0"}`}
+              className={`max-sm:hidden  absolute bottom-0 left-0 h-1 w-full origin-left bg-black transition-transform duration-300 ease-in-out group-hover:scale-x-100 ${location.pathname === link.to ? "scale-x-100" : "scale-x-0"}`}
             ></span>
           </span>
         </NavLink>

@@ -107,7 +107,7 @@ const Blogs = () => {
                 May 1, 2024
               </span>
             </div>
-            <div className="h-80 basis-1/3">
+            <div className="h-80 basis-1/2">
               <img
                 src={featuredBlog.src}
                 className="h-full w-full object-cover"

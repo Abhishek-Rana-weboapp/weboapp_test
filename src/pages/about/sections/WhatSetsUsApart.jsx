@@ -9,25 +9,30 @@ const WhatSetsUsApart = () => {
       title: "Strategic Design Thinking",
       description:
         "We design with your business goals in mind, ensuring impactful results.",
+      icon: "/icons/aboutpage/strategicDesign.png",
     },
     {
       title: "Collaborative Process",
       description:
         "We work closely with you, blending your vision with our creative expertise.",
+      icon: "/icons/about/flexible.png",
     },
     {
       title: "Proven Track Record",
       description:
         "Our success is reflected in the achievements of our satisfied clients.",
+      icon: "/icons/aboutpage/image (9).png",
     },
     {
       title: "End-to-End Service Offering",
       description: "From branding to launch, we cover all your design needs.",
+      icon: "/icons/about/project-management.png",
     },
     {
       title: "Innovation-Driven Approach",
       description:
         "We leverage the latest trends to keep your brand ahead of the curve.",
+      icon: "/icons/healthcareApplications/hyper personalized.png",
     },
   ];
 
@@ -67,8 +72,8 @@ const WhatSetsUsApart = () => {
               className={`flex h-60 max-md:sticky max-md:border-0 top-24 max-md:bg-white flex-col items-start justify-center gap-8 border p-5 text-start ${borderClasses[index]} ${[0, 1, 2].includes(index) ? "md:w-1/3" : "md:w-1/2"}`}
             >
               <img
-                className="size-14"
-                src="/icons/aboutpage/strategicDesign.png"
+                className="size-16 md:size-20 object-cover"
+                src={point.icon}
                 alt=""
               />
               <div className="flex flex-col gap-2">
