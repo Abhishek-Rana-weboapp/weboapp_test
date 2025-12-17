@@ -40,7 +40,7 @@ const OurValues = () => {
     <section className="">
       <Wrapper className={"flex flex-col gap-8 px-5 md:flex-row md:px-2 md:py-20 py-8"} >
         <div className="flex max-w-[600px] flex-col gap-8 text-start">
-         <h2 className="text-[2.5rem] leading-[2.5rem] text-primary-900 font-semibold text-start max-w-lg">What We Stand For</h2>
+         <h2 className="sm:text-[2.5rem] text-3xl leading-[2.5rem] text-primary-900 font-semibold text-start max-w-lg">What We Stand For</h2>
           {/* <FadeUpHeading>What We Stand For</FadeUpHeading> */}
           <p className="text-black/70 ">
             At Weboapp Discovery, we believe in empowering businesses through

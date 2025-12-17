@@ -15,8 +15,8 @@ const About = () => {
 
   return (
     <section className="mx-auto my-20 w-full p-4 md:w-3/4">
-      <h2 className="text-[2.5rem] leading-[2.5rem] text-primary-900 font-semibold text-center mb-5 max-w-lg mx-auto">About us</h2>
-      <p className="mb-5 text-xl tracking-wide text-black/60 md:text-2xl">
+      <h2 className="sm:text-[2.5rem] text-3xl leading-[2.5rem] text-primary-900 font-semibold text-center mb-5 max-w-lg mx-auto">About us</h2>
+      <p className="mb-5 sm:text-xl text-base tracking-wide text-black/60 md:text-2xl">
         Weboapp Discovery : A leader in next-gen digital services, specializing
         in innovative web, AI, and IT solutions.
       </p>

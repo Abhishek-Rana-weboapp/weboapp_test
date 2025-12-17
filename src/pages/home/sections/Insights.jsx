@@ -13,7 +13,7 @@ const Insights = () => {
   return (
     <section>
       <Wrapper className={"space-y-10"}>
-        <h2 className="text-[2rem] leading-[2.5rem] text-primary-900 font-semibold text-center mx-auto mb-10 max-w-lg">Insights From Our Team</h2>
+        <h2 className="sm:text-[2rem] text-3xl leading-[2.5rem] text-primary-900 font-semibold text-center mx-auto mb-10 max-w-lg">Insights From Our Team</h2>
         <div className="grid gap-4 sm:grid-cols-[repeat(auto-fit,minmax(350px,1fr))]">
           {dummyBlogs.slice(0, 3).map((blog, index) => {
             return <BlogCard delay={index * 0.01} blog={blog} key={blog.id} />;

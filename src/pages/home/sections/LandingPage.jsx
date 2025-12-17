@@ -1,9 +1,6 @@
 import React from "react";
 import Wrapper from "../../../components/Wrapper";
 import Button from "../../../components/buttons/Button";
-import { motion } from "framer-motion";
-import { fadeUp } from "../../../utils/axios/animations/animations";
-import { useNavigate } from "react-router-dom";
 import ImageComponent from "../../../components/image/ImageComponent";
 import { Link } from "react-router-dom";
 import { Phone } from "lucide-react";
@@ -17,10 +14,9 @@ const LandingPage = () => {
   return (
     <>
     <FloatingIcons />
-     
       {/* <section className="relative bg-gradient-to-br from-[#dbe8f7] from-0% via-[#f6f6f6] via-[25%] to-[#97c0d0] to-100%"> */}
       <section className="relative sm:h-[90vh] sm:content-center">
-        <Wrapper className={"py-8"}>
+        <Wrapper className={"max-sm:py-16 py-8"}>
           <div className="h-full">
             <div  className="flex flex-col gap-5 md:flex-row md:gap-6">
               <div className="flex basis-1/2 flex-col justify-center gap-4 md:text-start text-center md:gap-10">
@@ -46,7 +42,7 @@ const LandingPage = () => {
                 </div>
             
                 <div
-                  className="flex gap-4"
+                  className="flex gap-4 max-md:justify-center"
                 >
                  <Link to="/contact">
                    <Button className={"flex gap-2 items-center max-md:mx-auto justify-center md:px-5 md:py-3 px-3 py-2 font-semibold"}>

@@ -167,7 +167,7 @@ const Services = () => {
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 md:w-[170%] w-[300%] md:h-[130%] h-[120%] rounded-[50%] bg-neutral-100 -z-20"></div>
       <Wrapper>
         <div className="grid md:grid-cols-2 justify-between items-center gap-4">
-          <h2 className="text-[2rem] leading-[2.5rem] text-primary-900 font-semibold text-start max-w-lg">From Concept to Completion: Our Services</h2>
+          <h2 className="sm:text-[2rem] text-2xl leading-[2.5rem] text-primary-900 font-semibold text-start max-w-lg">From Concept to Completion: Our Services</h2>
           <div className="flex md:justify-end items-end h-full">
             <NavLink to={"/services"} className={"relative flex items-center gap-2 text-primary-700 font-semibold py-2 hover:scale-[1.03] hover:text-primary-900 transition-all duration-150 ease-out before:content-[''] before:absolute before:left-0 before:bottom-0 before:w-full before:h-[1px] before:bg-primary-700 before:z-[-1] before:rounded-full"}>
               Everything we do <ArrowRight />
@@ -188,7 +188,7 @@ const Services = () => {
       </Wrapper>
     </div>
     <div className="sm:mt-32 mt-20 sm:py-20 py-10">
-      <h3 className="text-[2rem] leading-[2.5rem] text-primary-900 font-semibold text-center max-w-lg mx-auto">We have your Tech Stack</h3>
+      <h3 className="sm:text-[2rem] text-2xl leading-[2.5rem] text-primary-900 font-semibold text-center max-w-lg mx-auto">We have your Tech Stack</h3>
       <p className="text-center text-gray-500 max-w-lg mx-auto font-medium my-3">Our team is skilled in a wide range of technologies and tools to help you build your next project.</p>
       <Marquee duration={200}>
           {technologies.map((service, index)=>(

@@ -95,9 +95,9 @@ const Industry = () => {
     <section className='mt-28 relative bg-zinc-100'>
 
       <div className='absolute -top-8 left-0 w-full sm:max-w-xl max-w-[90%] flex justify-center bg-primary-950 h-16 rounded-tr-2xl rounded-br-2xl p-2 items-center text-white'>
-       <h2 className="text-[2rem] leading-[2.5rem] text-white font-semibold text-start max-w-lg">Industries We Serve</h2>
+       <h2 className="sm:text-[2rem] text-2xl leading-[2.5rem] text-white font-semibold text-start max-w-lg">Industries We Serve</h2>
       </div>
-     <Wrapper className={"py-16"}>
+     <Wrapper className={"sm:py-16 py-4"}>
         <div className='overflow-hidden'>
           <div className='flex justify-between md:gap-10 max-md:flex-wrap max-sm:hidden'>
              {
