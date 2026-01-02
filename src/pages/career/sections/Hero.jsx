@@ -14,11 +14,20 @@ const Hero = () => {
             Join Our Community for Successful career
           </FadeUpHeading>
           <FadeUpParagraph className={"max-w-[600px] md:text-2xl"}>
-            Experience the future of real estate management. Whether you're a
-            homeowner, property manager, or real estate investor, we offer the
-            tools you need.
+            Join a team of passionate innovators building cutting-edge solutions. 
+            Grow your career with exciting projects, continuous learning, and a 
+            supportive environment that values your contribution.
           </FadeUpParagraph>
-          <Pin className={"md:text-xl"}>Check Latest Jobs</Pin>
+          <a 
+            href="#vacancies"
+            onClick={(e) => {
+              e.preventDefault();
+              document.getElementById('vacancies')?.scrollIntoView({ behavior: 'smooth' });
+            }}
+            className="cursor-pointer"
+          >
+            <Pin className={"md:text-xl"}>Check Latest Jobs</Pin>
+          </a>
         </div>
         <div className="sm:basis-1/2 hidden sm:block">
           <div className="flex gap-2 items-end justify-end">
