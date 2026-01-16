@@ -1,12 +1,12 @@
-import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App.jsx';
 import './index.css';
-import { BrowserRouter } from 'react-router-dom';
-import { ReactLenis } from 'lenis/react';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
-import AppLayout from './AppLayout.jsx';
 import { FormContextProvider } from './context/FormContext.jsx';
+import { AuthContextProvider } from './context/AuthContext.jsx';
+import { routes } from './routes.jsx/routesConfig.jsx';
+
+const router = createBrowserRouter(routes);
 
 ReactDOM.createRoot(
   document.getElementById(
@@ -14,10 +14,10 @@ ReactDOM.createRoot(
   ),
 ).render(
   <HelmetProvider>
-    <BrowserRouter>
+    <AuthContextProvider>
       <FormContextProvider>
-          <App />
+        <RouterProvider router={router} />
       </FormContextProvider>
-    </BrowserRouter>
+    </AuthContextProvider>
   </HelmetProvider>,
 );

@@ -11,7 +11,7 @@ const useFetchJobs = () => {
     useEffect(()=>{
         const fetchTestimonials = async()=>{
             setLoading(true)
-            await axios.get(`${BASE_URL}jobs`)
+            await axios.get(`${BASE_URL}job/`)
             .then(res=>{
                 setJobes(res.data.data)
             })

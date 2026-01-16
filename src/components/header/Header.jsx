@@ -23,6 +23,7 @@ const Header =
             <li className="font-semibold select-none"><a href="https://portfolio.weboappdiscovery.com/" target="_blank" rel="noopener noreferrer" >Our Work</a></li>
             <li className="font-semibold select-none"><Link to="/about">About</Link></li>
             <li className="font-semibold select-none"><Link to="/blog">Blog</Link></li>
+            <li className="font-semibold select-none"><Link to="/career">Career</Link></li>
             <li className="font-semibold select-none"><Link to="/contact">Contact</Link></li>
             <li>
               <Link to="/contact">

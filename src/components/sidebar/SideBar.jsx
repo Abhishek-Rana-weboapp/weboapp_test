@@ -29,6 +29,10 @@ const links = [
     to: "/blog",
   },
   {
+    label: "career",
+    to: "/career",
+  },
+  {
     label: "contact",
     to: "/contact",
   },

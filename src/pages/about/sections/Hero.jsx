@@ -47,10 +47,6 @@ const Hero = () => {
               </p>
             </motion.div>
 
-            <motion.div
-            >
-              <Pin>Read More</Pin>
-            </motion.div>
           </div>
         </div>
         <motion.div

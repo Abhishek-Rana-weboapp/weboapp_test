@@ -9,7 +9,8 @@ import Wrapper from "../../components/Wrapper";
 import Button from "../../components/buttons/Button";
 import FadeUpHeading from "../../components/animateComponents/FadeUpHeading";
 import { dummyBlogs } from "../../static/blogsData";
-import BreadCrumbs from "../../components/breadcrumbs/BreadCrumbs"
+import BreadCrumbs from "../../components/breadcrumbs/BreadCrumbs";
+import { axiosInstance } from "../../api/axios";
 
 
 const Blogs = () => {
@@ -27,6 +28,22 @@ const Blogs = () => {
 
   useLogoColor(ImageRef, "#fff");
 
+  // Fetch blogs from API and append to existing dummy blogs
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      try {
+        const res = await axiosInstance.get("/blog/");
+        if (res.data) {
+          const apiBlogs = Array.isArray(res.data) ? res.data : res.data.blogs || [];
+          setBlogs([...dummyBlogs, ...apiBlogs]);
+        }
+      } catch (error) {
+        console.error("Error fetching blogs:", error);
+      }
+    };
+    fetchBlogs();
+  }, []);
+
   const handleSearch = (e) => {
     setSearchQuery(e.target.value);
   };
@@ -35,7 +52,7 @@ const Blogs = () => {
 
   const searchFunction = (query) => {
     if (!query) {
-      setSearchedBlogs(dummyBlogs);
+      setSearchedBlogs(blogs);
       return;
     }
     const result = blogs?.filter((blog) =>
@@ -47,7 +64,7 @@ const Blogs = () => {
 
   useEffect(() => {
     searchFunction(debouncedValue);
-  }, [debouncedValue]);
+  }, [debouncedValue, blogs]);
 
   const handleCreate = () => {
     navigate("/createblog");
@@ -81,19 +98,11 @@ const Blogs = () => {
       <Wrapper>
         <div className="space-y-3">
           <motion.h3
-            variants={fadeUp}
-            initial="initial"
-            whileInView={"animate"}
-            viewport={{ margin: "0px 0px -200px 0px", once: true }}
             className="text-start text-lg font-semibold md:text-xl"
           >
             Featured Article
           </motion.h3>
           <motion.div
-            variants={fadeUp}
-            initial="initial"
-            whileInView={"animate"}
-            viewport={{ margin: "0px 0px -200px 0px", once: true }}
             className="flex flex-col overflow-hidden rounded-3xl text-start shadow-md md:flex-row"
           >
             <div className="basis-2/3 content-center space-y-6 p-4">

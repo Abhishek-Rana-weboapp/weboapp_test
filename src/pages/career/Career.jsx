@@ -10,7 +10,7 @@ const Streamline = lazy(() => import("./sections/Streamline"));
 const Career = (props) => {
   return (
     <Suspense fallback={<>Loading</>}>
-      <div className="space-y-20">
+      <div className="space-y-2">
         <Hero />
         <WhyWorkWithUs />
         <Streamline />
@@ -18,7 +18,8 @@ const Career = (props) => {
           <OpenVacancies />
         </div>
         <HiringProcess />
-        <ScheduleCallSection
+        <ScheduleCallSection 
+        CTALink="/career#vacancies"
           title="Ready to Join Our Team?"
           subtitle="Explore exciting career opportunities and be part of our innovative journey. Let's build something amazing together."
           buttonText="View Open Positions"

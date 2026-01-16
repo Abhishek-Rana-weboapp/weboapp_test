@@ -1,9 +1,4 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import {
-  fadeUp,
-  fadeVariants,
-} from "../../../utils/axios/animations/animations";
 import FadeUpHeading from "../../../components/animateComponents/FadeUpHeading";
 import FadeUpParagraph from "../../../components/animateComponents/FadeUpParagraph";
 
@@ -32,18 +27,12 @@ const WhyWorkWithUs = () => {
   const [activePoint, setActivePoint] = useState(0);
 
   return (
-    <div className="mx-auto mt-10 flex max-w-[1500px] flex-col gap-6 p-3 md:p-4">
-      <div className="flex flex-col gap-4 md:flex-row">
+    <div className="mx-auto flex max-w-[1500px] mt-10 flex-col gap-6 p-3 md:p-4">
+      <div className="flex flex-col gap-4 md:flex-row justify-between">
 
-        <div className="flex flex-col gap-10 md:w-3/5 justify-center">
-      <FadeUpHeading className={"text-start"}>Why Work With Us</FadeUpHeading>
-          <motion.div
-            variants={fadeUp}
-            initial="initial"
-            whileInView={"animate"}
-            viewport={{ margin:"0px 0px -200px 0px", once: true }}
-            className="flex max-sm:gap-1"
-          >
+        <div className="flex flex-col gap-10 max-w-[800px] justify-center">
+      <h2 className={"text-start text-3xl font-bold text-primary-800"}>Why Work With Us</h2>
+          <div className="flex max-sm:gap-1">
             {points.map((point, index) => {
               return (
                 <div
@@ -52,35 +41,28 @@ const WhyWorkWithUs = () => {
                   key={index}
                 >
                   <span
-                    className={`${activePoint === index ? "before:bg-blue-400" : "text-black/70"} relative pr-2 text-start transition-colors duration-200 before:absolute before:-bottom-[2px] before:h-[2px] before:w-full before:transition-colors before:duration-300 before:content-[''] before:group-hover:bg-blue-400 md:text-xl`}
+                    className={`${activePoint === index ? "before:bg-blue-400" : "text-black/70"} relative pr-2 text-start transition-colors duration-200 before:absolute before:-bottom-[2px] before:h-[2px] before:w-full before:transition-colors before:duration-300 before:content-[''] before:group-hover:bg-blue-400 `}
                   >
                     {point.title}
                   </span>
                 </div>
               );
             })}
-          </motion.div>
+          </div>
           <div>
-            <FadeUpParagraph className="max-w-[700px] text-start text-black/70 md:text-lg">
+            <p className="max-w-[700px] text-start text-gray-600">
               {points[activePoint].description}
-            </FadeUpParagraph>
+            </p>
           </div>
         </div>
-        <AnimatePresence mode="wait">
-          <div className="w-full lg:w-2/5">
-            <motion.img
-              key={activePoint}
-              variants={fadeUp}
-              initial="initial"
-              whileInView="animate"
-              viewport={{ margin: "0px 0px -200px 0px", once: true }}
-              exit="exit"
-              src="/landing/ourValues/3.png"
-              className="mx-auto rounded-3xl object-cover max-md:max-w-[300px]"
-              alt=""
-            />
-          </div>
-        </AnimatePresence>
+        <div className="w-full lg:w-2/5">
+          <img
+            key={activePoint}
+            src="/landing/ourValues/3.png"
+            className="mx-auto rounded-3xl object-cover max-md:max-w-[250px]"
+            alt=""
+          />
+        </div>
       </div>
     </div>
   );

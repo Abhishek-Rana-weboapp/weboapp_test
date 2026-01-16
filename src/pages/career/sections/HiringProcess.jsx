@@ -2,8 +2,6 @@ import React from 'react'
 import FadeUpHeading from '../../../components/animateComponents/FadeUpHeading'
 import FadeUpParagraph from '../../../components/animateComponents/FadeUpParagraph'
 import Wrapper from '../../../components/Wrapper'
-import { motion } from 'framer-motion'
-import { fadeUp } from '../../../utils/axios/animations/animations'
 import { FileText, Users, MessageSquare, CheckCircle, ArrowRight } from 'lucide-react'
 
 const HiringProcess = () => {
@@ -35,11 +33,11 @@ const HiringProcess = () => {
       <Wrapper>
         <div className="space-y-12">
           <div className="text-center space-y-4">
-            <FadeUpHeading>Our Hiring Process</FadeUpHeading>
-            <FadeUpParagraph className="max-w-2xl mx-auto">
+            <h3 className="text-3xl font-bold text-primary-800">Our Hiring Process</h3>
+            <p className="max-w-2xl mx-auto text-gray-600">
               We've streamlined our hiring process to make it simple and transparent. 
               Here's what you can expect when you apply.
-            </FadeUpParagraph>
+            </p>
           </div>
 
           <div className="relative">
@@ -48,13 +46,8 @@ const HiringProcess = () => {
             
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
               {steps.map((step, index) => (
-                <motion.div
+                <div
                   key={index}
-                  variants={fadeUp}
-                  initial="initial"
-                  whileInView="animate"
-                  viewport={{ margin: "0px 0px -200px 0px", once: true }}
-                  transition={{ delay: index * 0.1 }}
                   className="relative"
                 >
                   <div className="flex flex-col items-center text-center space-y-4">
@@ -79,23 +72,17 @@ const HiringProcess = () => {
                       </p>
                     </div>
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
           </div>
 
-          <motion.div
-            variants={fadeUp}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ margin: "0px 0px -200px 0px", once: true }}
-            className="text-center pt-8"
-          >
+          <div className="text-center pt-8">
             <p className="text-gray-600 max-w-2xl mx-auto">
               We typically respond to applications within 3-5 business days. 
               If you have any questions about the process, feel free to reach out to us.
             </p>
-          </motion.div>
+          </div>
         </div>
       </Wrapper>
     </div>

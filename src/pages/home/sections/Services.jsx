@@ -192,7 +192,7 @@ const Services = () => {
       <p className="text-center text-gray-500 max-w-lg mx-auto font-medium my-3">Our team is skilled in a wide range of technologies and tools to help you build your next project.</p>
       <Marquee duration={200}>
           {technologies.map((service, index)=>(
-          <NavLink key={index} to={service.url || "#"} className="mx-4 select-none hover:text-primary-700 transition-all duration-150 ease-out md:text-5xl text-3xl font-extrabold text-neutral-300 uppercase p-2">
+          <NavLink key={index}  className="pointer-events-none mx-4 select-none hover:text-primary-700 transition-all duration-150 ease-out md:text-5xl text-3xl font-extrabold text-neutral-300 uppercase p-2">
             {service.name}
           </NavLink>
          ))}
